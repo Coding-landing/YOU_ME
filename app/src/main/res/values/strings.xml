@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">YouAndMe</string>
+    <string name="main_fab_todo_add_description">번호 추가 버튼</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="contact_list">home</string>
+    <string name="my_page">my</string>
+    <string name="calling">call</string>
+    <string name="add_contact">add</string>
+</resources>
