@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/list_view"
+        android:title="@string/toolbar_list_view"
+        android:icon="@drawable/icon_list"
+        app:showAsAction="always"
+        />
+    <item android:id="@+id/grid_view"
+        android:title="@string/toolbar_grid_view"
+        android:icon="@drawable/icon_menu"
+        app:showAsAction="always"/>
+
+</menu>
