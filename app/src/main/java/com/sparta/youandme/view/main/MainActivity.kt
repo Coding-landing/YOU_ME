@@ -1,14 +1,13 @@
 package com.sparta.youandme.view.main
 
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.core.view.isVisible
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.sparta.youandme.R
 import com.sparta.youandme.databinding.ActivityMainBinding
-import com.sparta.youandme.extension.ContextExtension.toast
 import com.sparta.youandme.view.addcontact.AddContactDialogFragment
 import com.sparta.youandme.view.main.viewpager.MainViewPagerAdapter
 import com.sparta.youandme.view.mypage.MyPageFragment
@@ -42,16 +41,29 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViews() = with(binding) {
-        toolBar.title = getString(R.string.app_name)
+        val iconList = intArrayOf(R.drawable.icon_home, R.drawable.icon_book, R.drawable.icon_call)
         viewPager.isVisible = true
         viewPager.run {
             adapter = viewPagerAdapter
             registerOnPageChangeCallback(callback)
         }
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.setText(viewPagerAdapter.getTitle(position))
+//            tab.setText(viewPagerAdapter.getTitle(position))
         }.attach()
+
+        setCustomTabLayoutIcon(iconList)
         initButton()
+    }
+
+    private fun setCustomTabLayoutIcon(iconList: IntArray) = with(binding) {
+        for (i in iconList.indices) {
+            val view = layoutInflater.inflate(R.layout.tab_icon, null)
+            val tab = tabLayout.getTabAt(i)
+            view.findViewById<ImageView>(R.id.tab_icon_image_view)
+                .setBackgroundResource(iconList[i])
+            if (tab != null)
+                tab.customView = view
+        }
     }
 
     private fun initButton() = with(binding) {
