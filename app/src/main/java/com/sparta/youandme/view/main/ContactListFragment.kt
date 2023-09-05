@@ -1,12 +1,10 @@
 package com.sparta.youandme.view.main
 
 import android.os.Bundle
-import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
@@ -20,15 +18,10 @@ import com.sparta.youandme.R
 import com.sparta.youandme.data.CallObjectData
 import com.sparta.youandme.data.CallObjectData.gridList
 import com.sparta.youandme.databinding.FragmentContactListBinding
-import com.sparta.youandme.extension.ContextExtension.toast
-import com.sparta.youandme.view.addcontact.AddContactDialogFragment
-import com.sparta.youandme.view.call.CallFragment
 import com.sparta.youandme.view.detail.ContactDetailFragment
 import com.sparta.youandme.view.main.recyclerview.adapter.ContactListAdapter
 import com.sparta.youandme.view.main.recyclerview.listener.ItemClickListener
 import com.sparta.youandme.view.main.recyclerview.utility.SwipeToEditCallback
-import java.util.ArrayList
-
 
 class ContactListFragment : Fragment() {
     private var _binding: FragmentContactListBinding? = null

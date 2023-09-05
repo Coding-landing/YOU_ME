@@ -11,7 +11,6 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.sparta.youandme.R
 import com.sparta.youandme.databinding.ActivityMainBinding
-import com.sparta.youandme.extension.ContextExtension.toast
 import com.sparta.youandme.view.addcontact.AddContactDialogFragment
 import com.sparta.youandme.view.main.viewpager.MainViewPagerAdapter
 import com.sparta.youandme.view.mypage.MyPageFragment
