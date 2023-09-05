@@ -7,4 +7,6 @@
     <string name="my_page">my</string>
     <string name="calling">call</string>
     <string name="add_contact">add</string>
+    <string name="toolbar_list_view">List View</string>
+    <string name="toolbar_grid_view">Grid View</string>
 </resources>
