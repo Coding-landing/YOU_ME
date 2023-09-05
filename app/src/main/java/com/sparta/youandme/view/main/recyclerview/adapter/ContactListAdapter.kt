@@ -11,18 +11,23 @@ import com.sparta.youandme.databinding.ItemCallInfoGridBinding
 import com.sparta.youandme.databinding.ItemCallInfoReversedBinding
 import com.sparta.youandme.model.CallingObject
 import com.sparta.youandme.model.ViewType
+import com.sparta.youandme.view.main.recyclerview.listener.ItemClickListener
 import java.lang.RuntimeException
 
 class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val _list = arrayListOf<CallingObject>()
     val list: List<CallingObject>
         get() = _list
-
+    private lateinit var itemClickListener: ItemClickListener
 
     fun addItems(items: List<CallingObject>) {
         _list.clear()
         _list.addAll(items)
         notifyDataSetChanged()
+    }
+
+    fun setOnClickListener(listener: ItemClickListener) {
+        itemClickListener = listener
     }
 
 
@@ -60,7 +65,6 @@ class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             else -> throw RuntimeException("disable view type")
         }
-
     }
 
 
@@ -92,6 +96,11 @@ class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class ContactListLeftViewHolder(private val binding: ItemCallInfoBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.root.setOnClickListener {
+                itemClickListener.onItemClick(adapterPosition)
+            }
+        }
         fun bind(model: CallingObject) = with(binding) {
             peopleImageView.setImageResource(model.imgId)
             nameTextView.text = model.name
@@ -114,6 +123,11 @@ class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class ContactListRightViewHolder(private val binding: ItemCallInfoReversedBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.root.setOnClickListener {
+                itemClickListener.onItemClick(adapterPosition)
+            }
+        }
         fun bind(model: CallingObject) = with(binding) {
             peopleImageView.setImageResource(model.imgId)
             nameTextView.text = model.name
@@ -137,6 +151,11 @@ class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class ContactListGridViewHolder(private val binding: ItemCallInfoGridBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.root.setOnClickListener {
+                itemClickListener.onItemClick(adapterPosition)
+            }
+        }
         fun bind(model: CallingObject) = with(binding) {
             gridImageView.setImageResource(model.imgId)
             gridTextView.text = model.name

@@ -3,7 +3,9 @@ package com.sparta.youandme.view.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import androidx.annotation.IdRes
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.sparta.youandme.R
@@ -68,11 +70,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun initButton() = with(binding) {
         fabAddTodo.setOnClickListener {
-            viewPager.isVisible = false
-            addContactFragment.isVisible = true
-            supportFragmentManager.beginTransaction().replace(
-                R.id.add_contact_fragment, AddContactDialogFragment.newInstance()
-            ).commit()
+            changeFragment(R.id.add_contact_fragment, AddContactDialogFragment.newInstance())
         }
+    }
+
+     fun changeFragment(@IdRes fragmentId: Int, fragment: Fragment) = with(binding) {
+        viewPager.isVisible = false
+        addContactFragment.isVisible = true
+        supportFragmentManager.beginTransaction().replace(fragmentId, fragment).commit()
     }
 }
