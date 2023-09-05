@@ -124,7 +124,7 @@ object CallObjectData {
             type = ViewType.RIGHT_POSITION
         ),
     )
-    val gridList = (_list.map(CallingObject::clone) as List<CallingObject>).onEach {
+    val gridList = (_list.map(CallingObject::clone) as ArrayList<CallingObject>).onEach {
         it.type = ViewType.GRID_POSITION
     }
 }

@@ -1,29 +1,29 @@
 package com.sparta.youandme.view.main
 
 import android.os.Bundle
+import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
-import androidx.constraintlayout.widget.Constraints
-import androidx.core.view.get
 import androidx.core.view.isVisible
-import androidx.core.view.marginEnd
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.sparta.youandme.R
 import com.sparta.youandme.data.CallObjectData
 import com.sparta.youandme.data.CallObjectData.gridList
 import com.sparta.youandme.databinding.FragmentContactListBinding
-import com.sparta.youandme.extension.ContextExtension.toast
-import com.sparta.youandme.model.ViewType
-import com.sparta.youandme.view.main.recyclerviewadapter.ContactListAdapter
+import com.sparta.youandme.view.addcontact.AddContactDialogFragment
+import com.sparta.youandme.view.call.CallFragment
+import com.sparta.youandme.view.main.recyclerview.adapter.ContactListAdapter
+import com.sparta.youandme.view.main.recyclerview.utility.SwipeToEditCallback
+import java.util.ArrayList
 
 
 class ContactListFragment : Fragment() {
@@ -85,7 +85,7 @@ class ContactListFragment : Fragment() {
     private fun initRecyclerView() = with(binding) {
         view?.isVisible = true
         mainAdapter = ContactListAdapter().apply {
-            val items = CallObjectData.list
+            val items = CallObjectData.list.sortedByDescending { it.isLiked }
             if(manager is GridLayoutManager) {
                 addItems(gridList)
                 return@apply
@@ -97,12 +97,30 @@ class ContactListFragment : Fragment() {
             layoutManager = manager
             addOnScrollListener(scrollListener)
         }
+        // 왼쪽 스와이프 콜백
+        val callSwipeHandler = object : SwipeToEditCallback(requireActivity()){
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val activity = (requireActivity() as MainActivity).findViewById<ViewPager2>(R.id.view_pager)
+                val bundle = Bundle().apply {
+                    putParcelable("model", mainAdapter.list[viewHolder.adapterPosition])
+                }
+                activity.setCurrentItem(2, true)
+                parentFragmentManager.setFragmentResult("callObject", bundle)
+            }
+        }
+        val callSwipeHelper = ItemTouchHelper(callSwipeHandler)
+        callSwipeHelper.attachToRecyclerView(mainRecyclerView)
     }
 
     override fun onDestroyView() {
         _binding = null
         view = null
         super.onDestroyView()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initRecyclerView()
     }
 
     companion object {

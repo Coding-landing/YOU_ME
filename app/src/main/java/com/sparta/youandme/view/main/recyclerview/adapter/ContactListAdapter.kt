@@ -1,4 +1,4 @@
-package com.sparta.youandme.view.main.recyclerviewadapter
+package com.sparta.youandme.view.main.recyclerview.adapter
 
 import android.view.LayoutInflater
 
@@ -14,11 +14,14 @@ import com.sparta.youandme.model.ViewType
 import java.lang.RuntimeException
 
 class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val list = arrayListOf<CallingObject>()
+    private val _list = arrayListOf<CallingObject>()
+    val list: List<CallingObject>
+        get() = _list
+
 
     fun addItems(items: List<CallingObject>) {
-        list.clear()
-        list.addAll(items)
+        _list.clear()
+        _list.addAll(items)
         notifyDataSetChanged()
     }
 
@@ -62,16 +65,13 @@ class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     override fun getItemViewType(position: Int): Int {
-        return list[position].type
+        return _list[position].type
     }
 
-    override fun getItemCount(): Int = list.size
+    override fun getItemCount(): Int = _list.size
 
     fun sortingLikedList() {
-        val sortedList = list.sortedByDescending { it.isLiked }
-        sortedList.forEachIndexed { idx, i ->
-            println("${idx + 1}. ${i.name} ${i.isLiked}")
-        }
+        val sortedList = _list.sortedByDescending { it.isLiked }
         addItems(sortedList)
     }
 
@@ -82,7 +82,7 @@ class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val item = list[position]
+        val item = _list[position]
         when (item.type) {
             ViewType.LEFT_POSITION -> (holder as ContactListLeftViewHolder).bind(item)
             ViewType.RIGHT_POSITION -> (holder as ContactListRightViewHolder).bind(item)

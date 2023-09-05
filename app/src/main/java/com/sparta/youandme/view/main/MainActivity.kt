@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
             viewPager.isVisible = false
             addContactFragment.isVisible = true
             supportFragmentManager.beginTransaction().replace(
-                R.id.add_contact_fragment, AddContactDialogFragment()
+                R.id.add_contact_fragment, AddContactDialogFragment.newInstance()
             ).commit()
         }
     }
