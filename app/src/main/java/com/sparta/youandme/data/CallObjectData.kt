@@ -8,7 +8,6 @@ import java.util.UUID
 object CallObjectData {
     val list: List<CallingObject>
         get() = _list
-
     private val _list = arrayListOf(
         CallingObject(
             id = UUID.randomUUID().toString(),
@@ -125,4 +124,7 @@ object CallObjectData {
             type = ViewType.RIGHT_POSITION
         ),
     )
+    val gridList = (_list.map(CallingObject::clone) as List<CallingObject>).onEach {
+        it.type = ViewType.GRID_POSITION
+    }
 }

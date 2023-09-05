@@ -1,11 +1,12 @@
 package com.sparta.youandme.model
 
 import android.os.Parcelable
+import android.telecom.Call
 import androidx.annotation.DrawableRes
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class CallingObject (
+data class CallingObject(
     val id: String,
     @DrawableRes val imgId: Int,
     val name: String,
@@ -16,5 +17,9 @@ data class CallingObject (
     var nickName: String = "",
     var blogAddress: String = "",
     var isLiked: Boolean = false,
-    val type: Int
-): Parcelable
+    var type: Int
+) : Parcelable, Cloneable {
+    public override fun clone(): Any {
+        return CallingObject(id, imgId, name, mobileNumber, email, snsAddress, mbti, nickName, blogAddress, isLiked, type)
+    }
+}

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sparta.youandme.R
 import com.sparta.youandme.databinding.ItemCallInfoBinding
+import com.sparta.youandme.databinding.ItemCallInfoGridBinding
 import com.sparta.youandme.databinding.ItemCallInfoReversedBinding
 import com.sparta.youandme.model.CallingObject
 import com.sparta.youandme.model.ViewType
@@ -15,12 +16,13 @@ class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val list = arrayListOf<CallingObject>()
 
     fun addItems(items: List<CallingObject>) {
+        list.clear()
         list.addAll(items)
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return when(viewType) {
+        return when (viewType) {
             ViewType.LEFT_POSITION -> {
                 ContactListLeftViewHolder(
                     ItemCallInfoBinding.inflate(
@@ -30,9 +32,20 @@ class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     )
                 )
             }
+
             ViewType.RIGHT_POSITION -> {
                 ContactListRightViewHolder(
                     ItemCallInfoReversedBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
+                )
+            }
+
+            ViewType.GRID_POSITION -> {
+                ContactListGridViewHolder(
+                    ItemCallInfoGridBinding.inflate(
                         LayoutInflater.from(parent.context),
                         parent,
                         false
@@ -48,13 +61,15 @@ class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun getItemViewType(position: Int): Int {
         return list[position].type
     }
+
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = list[position]
-        when(item.type) {
+        when (item.type) {
             ViewType.LEFT_POSITION -> (holder as ContactListLeftViewHolder).bind(item)
             ViewType.RIGHT_POSITION -> (holder as ContactListRightViewHolder).bind(item)
+            ViewType.GRID_POSITION -> (holder as ContactListGridViewHolder).bind(item)
         }
     }
 
@@ -65,31 +80,12 @@ class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             nameTextView.text = model.name
             phoneNumberTextView.text = model.mobileNumber
             model.nickName.run {
-                when(isNullOrEmpty()) {
+                when (isNullOrEmpty()) {
                     true -> nameNicknameView.text = ""
                     false -> "(${model.nickName})".also { nameNicknameView.text = it }
                 }
             }
-            if(model.isLiked) {
-                likedCheckBox.setBackgroundResource(R.drawable.icon_heart_on)
-            } else {
-                likedCheckBox.setBackgroundResource(R.drawable.icon_heart)
-            }
-        }
-    }
-    inner class ContactListRightViewHolder(private val binding: ItemCallInfoReversedBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(model: CallingObject) = with(binding) {
-            peopleImageView.setImageResource(model.imgId)
-            nameTextView.text = model.name
-            phoneNumberTextView.text = model.mobileNumber
-            model.nickName.run {
-                when(isNullOrEmpty()) {
-                    true -> nameNicknameView.text = ""
-                    false -> "(${model.nickName})".also { nameNicknameView.text = it }
-                }
-            }
-            if(model.isLiked) {
+            if (model.isLiked) {
                 likedCheckBox.setBackgroundResource(R.drawable.icon_heart_on)
             } else {
                 likedCheckBox.setBackgroundResource(R.drawable.icon_heart)
@@ -97,4 +93,31 @@ class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
+    inner class ContactListRightViewHolder(private val binding: ItemCallInfoReversedBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(model: CallingObject) = with(binding) {
+            peopleImageView.setImageResource(model.imgId)
+            nameTextView.text = model.name
+            phoneNumberTextView.text = model.mobileNumber
+            model.nickName.run {
+                when (isNullOrEmpty()) {
+                    true -> nameNicknameView.text = ""
+                    false -> "(${model.nickName})".also { nameNicknameView.text = it }
+                }
+            }
+            if (model.isLiked) {
+                likedCheckBox.setBackgroundResource(R.drawable.icon_heart_on)
+            } else {
+                likedCheckBox.setBackgroundResource(R.drawable.icon_heart)
+            }
+        }
+    }
+
+    inner class ContactListGridViewHolder(private val binding: ItemCallInfoGridBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(model: CallingObject) = with(binding) {
+            gridImageView.setImageResource(model.imgId)
+            gridTextView.text = model.name
+        }
+    }
 }
