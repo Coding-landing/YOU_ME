@@ -2,6 +2,7 @@ package com.sparta.youandme.data
 
 import com.sparta.youandme.R
 import com.sparta.youandme.model.CallingObject
+import com.sparta.youandme.model.ViewType
 import java.util.UUID
 
 object CallObjectData {
@@ -18,7 +19,8 @@ object CallObjectData {
             snsAddress = "instagram.com/hyerin0820",
             mbti = "ISTJ",
             nickName = "cat",
-            blogAddress = "https://velog.io/@thwn1012"
+            blogAddress = "https://velog.io/@thwn1012",
+            type = ViewType.LEFT_POSITION
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
@@ -28,7 +30,8 @@ object CallObjectData {
             email ="sojh8908@gmail.com",
             snsAddress ="",
             mbti ="ISTP",
-            nickName ="https://junseon98.tistory.com/"
+            blogAddress = "https://junseon98.tistory.com/",
+            type = ViewType.RIGHT_POSITION
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
@@ -39,7 +42,8 @@ object CallObjectData {
             snsAddress ="https://www.facebook.com/profile.php?id=100006500445244",
             mbti ="ISTJ",
             nickName ="AAApple",
-            blogAddress ="https://aaapple.tistory.com/"
+            blogAddress ="https://aaapple.tistory.com/",
+            type = ViewType.LEFT_POSITION
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
@@ -50,7 +54,8 @@ object CallObjectData {
             snsAddress ="https://www.facebook.com/profile.php?id=100003286841954",
             mbti ="ISFP",
             nickName ="깜시",
-            blogAddress ="https://velog.io/@tlstmdcjfekt"
+            blogAddress ="https://velog.io/@tlstmdcjfekt",
+            type = ViewType.RIGHT_POSITION
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
@@ -61,7 +66,8 @@ object CallObjectData {
             snsAddress ="https://www.facebook.com/profile.php?id=100004828384746",
             mbti ="ISFP",
             nickName ="프리퍼",
-            blogAddress ="https://sunho0226.tistory.com/"
+            blogAddress ="https://sunho0226.tistory.com/",
+            type = ViewType.LEFT_POSITION
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
@@ -71,7 +77,8 @@ object CallObjectData {
             email ="silver_rain@gmail.com",
             snsAddress ="https://www.instagram.com/silver_rain.__/",
             mbti ="ENFP",
-            nickName ="대장토끼"
+            nickName ="대장토끼",
+            type = ViewType.RIGHT_POSITION
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
@@ -80,7 +87,8 @@ object CallObjectData {
             mobileNumber = "010-9876-9898",
             email ="zyozyo12@naver.com",
             snsAddress ="https://www.instagram.com/_zyozyo/",
-            mbti = "ESFP"
+            mbti = "ESFP",
+            type = ViewType.LEFT_POSITION
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
@@ -90,7 +98,9 @@ object CallObjectData {
             email ="sisun@gmail.com",
             snsAddress ="https://www.instagram.com/optimushwang/",
             mbti ="ESFJ",
-            nickName ="황제"
+            nickName ="황제",
+            type = ViewType.RIGHT_POSITION
+
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
@@ -100,7 +110,8 @@ object CallObjectData {
             email ="ddifj@gmail.com",
             snsAddress ="https://www.instagram.com/everyone_woo/",
             mbti ="INFJ",
-            nickName ="워누"
+            nickName ="워누",
+            type = ViewType.LEFT_POSITION
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
@@ -110,7 +121,8 @@ object CallObjectData {
             email ="haerin@gmail.com",
             snsAddress ="https://www.instagram.com/newjeans_official/",
             mbti ="ISTP",
-            nickName ="강해린 이상하다"
+            nickName ="강해린 이상하다",
+            type = ViewType.RIGHT_POSITION
         ),
     )
 }

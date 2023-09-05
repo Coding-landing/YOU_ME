@@ -15,5 +15,6 @@ data class CallingObject (
     var mbti: String = "",
     var nickName: String = "",
     var blogAddress: String = "",
-    var isLiked: Boolean = false
+    var isLiked: Boolean = false,
+    val type: Int
 ): Parcelable
