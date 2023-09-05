@@ -3,6 +3,7 @@ package com.sparta.youandme.view.main.recyclerviewadapter
 import android.view.LayoutInflater
 
 import android.view.ViewGroup
+import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import com.sparta.youandme.R
 import com.sparta.youandme.databinding.ItemCallInfoBinding
@@ -20,6 +21,7 @@ class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         list.addAll(items)
         notifyDataSetChanged()
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -58,12 +60,27 @@ class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     }
 
+
     override fun getItemViewType(position: Int): Int {
         return list[position].type
     }
 
     override fun getItemCount(): Int = list.size
 
+    fun sortingLikedList() {
+        val sortedList = list.sortedByDescending { it.isLiked }
+        sortedList.forEachIndexed { idx, i ->
+            println("${idx + 1}. ${i.name} ${i.isLiked}")
+        }
+        addItems(sortedList)
+    }
+
+    private fun isLikedResources(isLiked: Boolean, checkBox: CheckBox) {
+        when(isLiked) {
+            true -> checkBox.setBackgroundResource(R.drawable.icon_heart_on)
+            false -> checkBox.setBackgroundResource(R.drawable.icon_heart)
+        }
+    }
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = list[position]
         when (item.type) {
@@ -85,10 +102,12 @@ class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     false -> "(${model.nickName})".also { nameNicknameView.text = it }
                 }
             }
-            if (model.isLiked) {
-                likedCheckBox.setBackgroundResource(R.drawable.icon_heart_on)
-            } else {
-                likedCheckBox.setBackgroundResource(R.drawable.icon_heart)
+            likedCheckBox.run {
+                isLikedResources(model.isLiked, this)
+                setOnCheckedChangeListener { _, isChecked ->
+                    model.isLiked = isChecked
+                    isLikedResources(model.isLiked, this)
+                }
             }
         }
     }
@@ -105,10 +124,13 @@ class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     false -> "(${model.nickName})".also { nameNicknameView.text = it }
                 }
             }
-            if (model.isLiked) {
-                likedCheckBox.setBackgroundResource(R.drawable.icon_heart_on)
-            } else {
-                likedCheckBox.setBackgroundResource(R.drawable.icon_heart)
+
+            likedCheckBox.run {
+                isLikedResources(model.isLiked, this)
+                setOnCheckedChangeListener { _, isChecked ->
+                    model.isLiked = isChecked
+                    isLikedResources(model.isLiked, this)
+                }
             }
         }
     }

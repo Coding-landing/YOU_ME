@@ -77,6 +77,10 @@ class ContactListFragment : Fragment() {
             inflateMenu(R.menu.main_menu)
             setOnMenuItemClickListener(menuClickListener)
         }
+        swipeLayout.setOnRefreshListener {
+            mainAdapter.sortingLikedList()
+            swipeLayout.isRefreshing = false
+        }
     }
     private fun initRecyclerView() = with(binding) {
         view?.isVisible = true
