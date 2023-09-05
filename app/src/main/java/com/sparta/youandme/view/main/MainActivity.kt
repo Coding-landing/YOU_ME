@@ -7,9 +7,11 @@ import androidx.annotation.IdRes
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.sparta.youandme.R
 import com.sparta.youandme.databinding.ActivityMainBinding
+import com.sparta.youandme.extension.ContextExtension.toast
 import com.sparta.youandme.view.addcontact.AddContactDialogFragment
 import com.sparta.youandme.view.main.viewpager.MainViewPagerAdapter
 import com.sparta.youandme.view.mypage.MyPageFragment
@@ -55,6 +57,32 @@ class MainActivity : AppCompatActivity() {
 
         setCustomTabLayoutIcon(iconList)
         initButton()
+        initTabs()
+    }
+
+    private fun initTabs() = with(binding) {
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                when (tab?.position) {
+                    0 -> {
+                        viewPager.isVisible = true
+                        viewPager.setCurrentItem(0, false)
+                    }
+                    1 -> viewPager.setCurrentItem(1, false)
+
+                    2 -> viewPager.setCurrentItem(2, false)
+                }
+            }
+            override fun onTabUnselected(tab: TabLayout.Tab?) = Unit
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                when (tab?.position) {
+                    0 -> {
+                        viewPager.isVisible = true
+                        viewPager.setCurrentItem(0, false)
+                    }
+                }
+            }
+        })
     }
 
     private fun setCustomTabLayoutIcon(iconList: IntArray) = with(binding) {
@@ -74,7 +102,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-     fun changeFragment(@IdRes fragmentId: Int, fragment: Fragment) = with(binding) {
+    fun changeFragment(@IdRes fragmentId: Int, fragment: Fragment) = with(binding) {
         viewPager.isVisible = false
         addContactFragment.isVisible = true
         supportFragmentManager.beginTransaction().replace(fragmentId, fragment).commit()
