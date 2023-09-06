@@ -127,4 +127,5 @@ object CallObjectData {
     val gridList = (_list.map(CallingObject::clone) as ArrayList<CallingObject>).onEach {
         it.type = ViewType.GRID_POSITION
     }
+    fun addItem(model: CallingObject) = _list.add(model)
 }

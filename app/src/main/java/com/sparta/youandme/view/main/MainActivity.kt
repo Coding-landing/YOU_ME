@@ -28,9 +28,10 @@ class MainActivity : AppCompatActivity() {
                 viewPager.isVisible = true
                 if (viewPagerAdapter.getFragment(position) is MyPageFragment) {
                     fabAddTodo.hide()
-                } else {
-                    fabAddTodo.show()
+                    return
                 }
+                fabAddTodo.show()
+
             }
         }
     }
@@ -98,12 +99,16 @@ class MainActivity : AppCompatActivity() {
     private fun initButton() = with(binding) {
         fabAddTodo.setOnClickListener {
             changeFragment(R.id.add_contact_fragment, AddContactDialogFragment.newInstance())
+            fabAddTodo.hide()
         }
     }
 
     fun changeFragment(@IdRes fragmentId: Int, fragment: Fragment) = with(binding) {
         viewPager.isVisible = false
         addContactFragment.isVisible = true
-        supportFragmentManager.beginTransaction().replace(fragmentId, fragment).commit()
+        supportFragmentManager.beginTransaction()
+            .replace(fragmentId, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }
