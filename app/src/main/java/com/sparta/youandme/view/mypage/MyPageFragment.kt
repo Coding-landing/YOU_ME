@@ -38,6 +38,18 @@ class MyPageFragment : Fragment() {
             startActivity(intent)
         }  // snsbt 클릭시 sns의 텍스트를 인터넷과 연동해 사이트와 연결 버튼 구현
 
+        val myblgoImageView = view.findViewById<ImageView>(R.id.my_blogbt)
+        val blogTextView = view.findViewById<TextView>(R.id.my_blog_adress)
+
+        myblgoImageView.setOnClickListener {
+            val searchText = blogTextView.text.toString()
+
+            val intent = Intent(Intent.ACTION_WEB_SEARCH)
+            intent.putExtra("query", searchText)
+            startActivity(intent)
+        }  // blogbt 클릭시 sns의 텍스트를 인터넷과 연동해 사이트와 연결 버튼 구현
+
+
         return view
     }
 
