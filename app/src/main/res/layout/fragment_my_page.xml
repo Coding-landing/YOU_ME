@@ -164,7 +164,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="152dp"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginEnd="25dp"
                 android:background="@drawable/circular_background"
                 app:layout_constraintTop_toBottomOf="@+id/abcd" />
@@ -280,17 +280,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/abcde" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/my_call"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="10dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-                app:layout_constraintEnd_toStartOf="@+id/imageView3"
-                app:layout_constraintTop_toTopOf="@+id/imageView3"
+                app:layout_constraintBottom_toBottomOf="@+id/my_message"
+                app:layout_constraintEnd_toStartOf="@+id/my_message"
+                app:layout_constraintTop_toTopOf="@+id/my_message"
                 app:srcCompat="@drawable/call_11" />
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/my_message"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="10dp"
@@ -298,6 +298,36 @@
                 app:layout_constraintEnd_toEndOf="@+id/abcd"
                 app:layout_constraintTop_toTopOf="@+id/abcd"
                 app:srcCompat="@drawable/icon_mes1" />
+
+            <ImageView
+                android:id="@+id/my_emailbt"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/my_email"
+                app:layout_constraintEnd_toEndOf="@+id/abcd"
+                app:layout_constraintTop_toTopOf="@+id/my_email"
+                app:srcCompat="@drawable/icon_mail" />
+
+            <ImageView
+                android:id="@+id/my_snsbt"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/abcd"
+                app:layout_constraintEnd_toEndOf="@+id/abcd"
+                app:layout_constraintTop_toBottomOf="@+id/my_email"
+                app:srcCompat="@drawable/icon_sns" />
+
+            <ImageView
+                android:id="@+id/my_blogbt"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/my_blog_adress"
+                app:layout_constraintEnd_toEndOf="@+id/abcde"
+                app:layout_constraintTop_toTopOf="@+id/my_blog_adress"
+                app:srcCompat="@drawable/icon_blog" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
