@@ -9,4 +9,8 @@
 
     <style name="NoUnderlineEditText">
         <item name="android:background">@null</item></style>
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:fontFamily">@font/main_font</item>
+    </style>
+
 </resources>
