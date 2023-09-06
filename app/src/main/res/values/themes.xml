@@ -6,4 +6,7 @@
     </style>
 
     <style name="Theme.YouAndMe" parent="Base.Theme.YouAndMe" />
+
+    <style name="NoUnderlineEditText">
+        <item name="android:background">@null</item></style>
 </resources>

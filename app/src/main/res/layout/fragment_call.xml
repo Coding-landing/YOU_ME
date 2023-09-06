@@ -1,14 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/mint">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="1" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/call_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="84dp"
+        android:fontFamily="@font/main_font"
+        android:textColor="#09621C"
+        android:textSize="43dp"
+        android:lineHeight="52dp"
+        android:textAlignment="center"
+        style="@style/NoUnderlineEditText"/>
+
+
+    <ImageButton
+        android:id="@+id/call_one"
+        android:layout_width="85dp"
+        android:layout_height="88dp"
+        android:src="@drawable/icon_one"
+        android:background="@drawable/shape_for_call_button"
+        app:layout_constraintTop_toBottomOf="@id/call_number"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="22dp"
+        android:layout_marginLeft="25dp"
+
+        />
+
+    <ImageButton
+        android:id="@+id/call_two"
+        android:layout_width="85dp"
+        android:layout_height="88dp"
+        android:src="@drawable/icon_two"
+        android:background="@drawable/shape_for_call_button"
+        app:layout_constraintTop_toBottomOf="@id/call_number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="22dp"
+        />
+
+    <ImageButton
+        android:id="@+id/call_three"
+        android:layout_width="85dp"
+        android:layout_height="88dp"
+        android:src="@drawable/icon_three"
+        android:background="@drawable/shape_for_call_button"
+        app:layout_constraintTop_toBottomOf="@id/call_number"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="25dp"/>
+
+
+    <ImageButton
+        android:id="@+id/call_four"
+        android:layout_width="85dp"
+        android:layout_height="88dp"
+        android:src="@drawable/icon_four"
+        android:background="@drawable/shape_for_call_button"
+        app:layout_constraintTop_toBottomOf="@id/call_one"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="22dp"
+        android:layout_marginLeft="25dp" />
+
+    <ImageButton
+        android:id="@+id/call_five"
+        android:layout_width="85dp"
+        android:layout_height="88dp"
+        android:src="@drawable/icon_five"
+        android:background="@drawable/shape_for_call_button"
+        app:layout_constraintTop_toBottomOf="@id/call_two"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="22dp" />
+
+    <ImageButton
+        android:id="@+id/call_six"
+        android:layout_width="85dp"
+        android:layout_height="88dp"
+        android:src="@drawable/icon_six"
+        android:background="@drawable/shape_for_call_button"
+        app:layout_constraintTop_toBottomOf="@id/call_two"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="25dp"/>
+
+    <ImageButton
+        android:id="@+id/call_seven"
+        android:layout_width="85dp"
+        android:layout_height="88dp"
+        android:src="@drawable/icon_seven"
+        android:background="@drawable/shape_for_call_button"
+        app:layout_constraintTop_toBottomOf="@id/call_four"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="22dp"
+        android:layout_marginLeft="25dp" />
+
+    <ImageButton
+        android:id="@+id/call_eight"
+        android:layout_width="85dp"
+        android:layout_height="88dp"
+        android:src="@drawable/icon_eight"
+        android:background="@drawable/shape_for_call_button"
+        app:layout_constraintTop_toBottomOf="@id/call_five"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="22dp" />
+
+    <ImageButton
+        android:id="@+id/call_nine"
+        android:layout_width="85dp"
+        android:layout_height="88dp"
+        android:src="@drawable/icon_nine"
+        android:background="@drawable/shape_for_call_button"
+        app:layout_constraintTop_toBottomOf="@id/call_six"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="25dp"/>
+
+    <ImageButton
+        android:id="@+id/call_zero"
+        android:layout_width="85dp"
+        android:layout_height="88dp"
+        android:src="@drawable/icon_zero"
+        android:background="@drawable/shape_for_call_button"
+        app:layout_constraintTop_toBottomOf="@id/call_eight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="22dp" />
+
+    <ImageButton
+        android:id="@+id/call_calling"
+        android:layout_width="85dp"
+        android:layout_height="88dp"
+        android:src="@drawable/icon_color_call"
+        android:background="@drawable/circular_background"
+        app:layout_constraintTop_toBottomOf="@id/call_zero"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="22dp"
+        android:backgroundTint="@color/mint"/>
+
+    <ImageButton
+        android:id="@+id/call_backspace"
+        android:layout_width="85dp"
+        android:layout_height="88dp"
+        android:src="@drawable/icon_backspace"
+        android:background="@color/mint"
+        app:layout_constraintTop_toBottomOf="@id/call_nine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/call_zero"
+        android:layout_marginTop="22dp"
+        android:visibility="gone" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
