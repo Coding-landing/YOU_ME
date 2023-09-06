@@ -68,9 +68,14 @@ class MainActivity : AppCompatActivity() {
                         viewPager.isVisible = true
                         viewPager.setCurrentItem(0, false)
                     }
-                    1 -> viewPager.setCurrentItem(1, false)
+                    1 -> {
+                        viewPager.setCurrentItem(1, false)
+                    }
 
-                    2 -> viewPager.setCurrentItem(2, false)
+                    2 -> {
+                        tabLayout.isVisible = true
+                        viewPager.setCurrentItem(2, false)
+                    }
                 }
             }
             override fun onTabUnselected(tab: TabLayout.Tab?) = Unit
