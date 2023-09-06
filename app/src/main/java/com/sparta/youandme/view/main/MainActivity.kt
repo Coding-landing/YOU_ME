@@ -65,7 +65,9 @@ class MainActivity : AppCompatActivity() {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when (tab?.position) {
                     0 -> {
+                        addContactFragment.isVisible = false
                         viewPager.isVisible = true
+                        fabAddTodo.show()
                         viewPager.setCurrentItem(0, false)
                     }
                     1 -> {
@@ -74,6 +76,9 @@ class MainActivity : AppCompatActivity() {
 
                     2 -> {
                         tabLayout.isVisible = true
+                        addContactFragment.isVisible = false
+                        viewPager.isVisible = true
+                        fabAddTodo.show()
                         viewPager.setCurrentItem(2, false)
                     }
                 }
@@ -82,8 +87,21 @@ class MainActivity : AppCompatActivity() {
             override fun onTabReselected(tab: TabLayout.Tab?) {
                 when (tab?.position) {
                     0 -> {
+                        addContactFragment.isVisible = false
                         viewPager.isVisible = true
+                        fabAddTodo.show()
                         viewPager.setCurrentItem(0, false)
+                    }
+                    1 -> {
+                        viewPager.setCurrentItem(1, false)
+                    }
+
+                    2 -> {
+                        addContactFragment.isVisible = false
+                        tabLayout.isVisible = true
+                        viewPager.isVisible = true
+                        fabAddTodo.show()
+                        viewPager.setCurrentItem(2, false)
                     }
                 }
             }
@@ -112,7 +130,7 @@ class MainActivity : AppCompatActivity() {
         viewPager.isVisible = false
         addContactFragment.isVisible = true
         supportFragmentManager.beginTransaction()
-            .replace(fragmentId, fragment)
+            .add(fragmentId, fragment)
             .addToBackStack(null)
             .commit()
     }
