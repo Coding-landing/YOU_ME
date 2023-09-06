@@ -265,7 +265,7 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="10dp"
                 android:gravity="fill_vertical"
-                android:text="instagram.com/xxxxxx123"
+                android:text="https://sunho0226.tistory.com/manage"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:ellipsize="none"

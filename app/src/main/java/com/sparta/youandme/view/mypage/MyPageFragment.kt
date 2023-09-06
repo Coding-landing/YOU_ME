@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import com.sparta.youandme.R
 
 
@@ -20,14 +21,26 @@ class MyPageFragment : Fragment() {
 
         val myMessageImage = view.findViewById<ImageView>(R.id.my_message)
 
-        myMessageImage.setOnClickListener(View.OnClickListener {
+        myMessageImage.setOnClickListener {
             val intent = Intent(Intent.ACTION_MAIN)
             intent.addCategory(Intent.CATEGORY_APP_MESSAGING)
             startActivity(intent)
-        })
+        }  // 기본 메세지 연결 버튼 구현
+
+        val mySnsImageView = view.findViewById<ImageView>(R.id.my_snsbt)
+        val snsTextView = view.findViewById<TextView>(R.id.my_sns)
+
+        mySnsImageView.setOnClickListener {
+            val searchText = snsTextView.text.toString()
+
+            val intent = Intent(Intent.ACTION_WEB_SEARCH)
+            intent.putExtra("query", searchText)
+            startActivity(intent)
+        }  // snsbt 클릭시 sns의 텍스트를 인터넷과 연동해 사이트와 연결 버튼 구현
 
         return view
     }
+
     companion object {
         fun newInstance() = MyPageFragment()
     }
