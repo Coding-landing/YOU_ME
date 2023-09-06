@@ -13,14 +13,25 @@ import android.widget.TextView
 import android.widget.Toast
 import com.sparta.youandme.R
 
-
 class MyPageFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         val view = inflater.inflate(R.layout.fragment_my_page, container, false)
+
+        val phoneNumberTextView = view.findViewById<TextView>(R.id.my_phone_number)
+
+        val myCallImageView = view.findViewById<ImageView>(R.id.my_call)
+        myCallImageView.setOnClickListener {
+            val phoneNumber = phoneNumberTextView.text.toString()
+
+            val intent = Intent(Intent.ACTION_CALL)
+            intent.data = Uri.parse("tel:$phoneNumber")
+
+            startActivity(intent)
+        }
 
         val myMessageImage = view.findViewById<ImageView>(R.id.my_message)
 
