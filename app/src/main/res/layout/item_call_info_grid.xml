@@ -32,9 +32,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 >
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:src="@mipmap/ic_launcher" />
+                    android:layout_width="80dp"
+                    android:layout_height="80dp" />
             </androidx.cardview.widget.CardView>
             <TextView
                 android:layout_width="wrap_content"
@@ -70,8 +69,9 @@
                 >
                 <ImageView
                     android:id="@+id/grid_image_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:scaleType="centerCrop"
                     tools:src="@mipmap/ic_launcher" />
             </androidx.cardview.widget.CardView>
             <TextView

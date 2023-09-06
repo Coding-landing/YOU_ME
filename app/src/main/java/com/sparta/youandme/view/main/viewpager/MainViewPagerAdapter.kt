@@ -5,7 +5,6 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.sparta.youandme.R
 import com.sparta.youandme.model.MainTabs
-import com.sparta.youandme.view.addcontact.AddContactDialogFragment
 import com.sparta.youandme.view.call.CallFragment
 import com.sparta.youandme.view.main.ContactListFragment
 import com.sparta.youandme.view.mypage.MyPageFragment
