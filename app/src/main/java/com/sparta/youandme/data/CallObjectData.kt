@@ -19,7 +19,7 @@ object CallObjectData {
             mbti = "ISTJ",
             nickName = "cat",
             blogAddress = "https://velog.io/@thwn1012",
-            type = ViewType.LEFT_POSITION
+            type = ViewType.DEFAULT_POSITION
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
@@ -30,7 +30,7 @@ object CallObjectData {
             snsAddress ="",
             mbti ="ISTP",
             blogAddress = "https://junseon98.tistory.com/",
-            type = ViewType.RIGHT_POSITION
+            type = ViewType.DEFAULT_POSITION
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
@@ -42,7 +42,7 @@ object CallObjectData {
             mbti ="ISTJ",
             nickName ="AAApple",
             blogAddress ="https://aaapple.tistory.com/",
-            type = ViewType.LEFT_POSITION
+            type = ViewType.DEFAULT_POSITION
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
@@ -54,7 +54,7 @@ object CallObjectData {
             mbti ="ISFP",
             nickName ="깜시",
             blogAddress ="https://velog.io/@tlstmdcjfekt",
-            type = ViewType.RIGHT_POSITION
+            type = ViewType.DEFAULT_POSITION
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
@@ -66,7 +66,7 @@ object CallObjectData {
             mbti ="ISFP",
             nickName ="프리퍼",
             blogAddress ="https://sunho0226.tistory.com/",
-            type = ViewType.LEFT_POSITION
+            type = ViewType.DEFAULT_POSITION
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
@@ -77,7 +77,7 @@ object CallObjectData {
             snsAddress ="https://www.instagram.com/silver_rain.__/",
             mbti ="ENFP",
             nickName ="대장토끼",
-            type = ViewType.RIGHT_POSITION
+            type = ViewType.DEFAULT_POSITION
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
@@ -87,7 +87,7 @@ object CallObjectData {
             email ="zyozyo12@naver.com",
             snsAddress ="https://www.instagram.com/_zyozyo/",
             mbti = "ESFP",
-            type = ViewType.LEFT_POSITION
+            type = ViewType.DEFAULT_POSITION
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
@@ -98,7 +98,7 @@ object CallObjectData {
             snsAddress ="https://www.instagram.com/optimushwang/",
             mbti ="ESFJ",
             nickName ="황제",
-            type = ViewType.RIGHT_POSITION
+            type = ViewType.DEFAULT_POSITION
 
         ),
         CallingObject(
@@ -110,7 +110,7 @@ object CallObjectData {
             snsAddress ="https://www.instagram.com/everyone_woo/",
             mbti ="INFJ",
             nickName ="워누",
-            type = ViewType.LEFT_POSITION
+            type = ViewType.DEFAULT_POSITION
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
@@ -121,7 +121,7 @@ object CallObjectData {
             snsAddress ="https://www.instagram.com/newjeans_official/",
             mbti ="ISTP",
             nickName ="강해린 이상하다",
-            type = ViewType.RIGHT_POSITION
+            type = ViewType.DEFAULT_POSITION
         ),
     )
     val gridList = (_list.map(CallingObject::clone) as ArrayList<CallingObject>).onEach {
