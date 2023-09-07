@@ -1,5 +1,6 @@
 package com.sparta.youandme.view.main
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import com.sparta.youandme.R
 import com.sparta.youandme.data.CallObjectData
@@ -32,6 +34,7 @@ class ContactListFragment : Fragment() {
     private lateinit var manager: LayoutManager
     private lateinit var mainActivity: MainActivity
     private var view: TabLayout? = null
+    private var fab: FloatingActionButton? = null
     private val menuClickListener by lazy {
         Toolbar.OnMenuItemClickListener { item ->
             when (item?.itemId) {
@@ -69,7 +72,7 @@ class ContactListFragment : Fragment() {
         manager = LinearLayoutManager(requireActivity())
         mainActivity = (requireActivity() as MainActivity)
         view = mainActivity.findViewById(R.id.tab_layout)
-
+        fab = mainActivity.findViewById(R.id.fab_add_todo)
         return binding.root
     }
 
@@ -100,6 +103,7 @@ class ContactListFragment : Fragment() {
 
     private fun initRecyclerView() = with(binding) {
         view?.isVisible = true
+        fab?.isVisible = true
         mainAdapter = ContactListAdapter().apply {
             val items =
                 CallObjectData.list.sortedWith(compareByDescending<CallingObject> { it.isLiked }.thenBy { it.name })
@@ -143,7 +147,22 @@ class ContactListFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        initRecyclerView()
+        var obj: CallingObject? = null
+        parentFragmentManager.setFragmentResultListener(
+            "callObject",
+            viewLifecycleOwner
+        ){ _, bundle->
+            obj = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                bundle.getParcelable("model", CallingObject::class.java)
+            } else {
+                bundle.getParcelable("model")
+            }
+            if (obj == null) {
+                return@setFragmentResultListener
+            }
+            CallObjectData.addItem(obj!!)
+            initRecyclerView()
+        }
     }
 
     companion object {
