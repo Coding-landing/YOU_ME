@@ -19,7 +19,7 @@
 
 
         <ImageView
-            android:id="@+id/roundedImageView"
+            android:id="@+id/detail_picture"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_centerInParent="true"
@@ -31,7 +31,7 @@
 
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScrollView"
+        android:id="@+id/detail_scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -42,11 +42,10 @@
 
 
             <ImageButton
-                android:id="@+id/buttonCall"
+                android:id="@+id/detail_call_btn"
                 android:layout_width="80dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="290dp"
-                android:layout_marginBottom="25dp"
                 android:layout_marginRight="80dp"
                 android:background="@color/mint"
                 android:scaleType="centerCrop"
@@ -55,21 +54,21 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/detail_message_btn"
                 android:layout_width="80dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="290dp"
+                android:layout_marginTop="300dp"
                 android:layout_marginRight="150dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/icon_mail2"
                 android:background="@color/mint"
-                app:layout_constraintBottom_toTopOf="@+id/roundedCornerTextView2"
+                app:layout_constraintBottom_toTopOf="@+id/detail_call_num"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/detail_text_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="이름"
@@ -82,7 +81,7 @@
 
 
             <TextView
-                android:id="@+id/roundedCornerTextView2"
+                android:id="@+id/detail_call_num"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -92,11 +91,11 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imageButton" />
+                app:layout_constraintTop_toBottomOf="@+id/detail_message_btn" />
 
 
             <TextView
-                android:id="@+id/roundedCornerTextView3"
+                android:id="@+id/detail_sns_address"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -106,10 +105,10 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/roundedCornerTextView2" />
+                app:layout_constraintTop_toBottomOf="@+id/detail_call_num" />
 
             <TextView
-                android:id="@+id/roundedCornerTextView4"
+                android:id="@+id/detail_email"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -119,10 +118,10 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/roundedCornerTextView3" />
+                app:layout_constraintTop_toBottomOf="@+id/detail_sns_address" />
 
             <TextView
-                android:id="@+id/roundedCornerTextView5"
+                android:id="@+id/detail_mbti"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -132,10 +131,10 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/roundedCornerTextView4" />
+                app:layout_constraintTop_toBottomOf="@+id/detail_email" />
 
             <TextView
-                android:id="@+id/roundedCornerTextView6"
+                android:id="@+id/detail_nick_name"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -145,56 +144,56 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/roundedCornerTextView5"
+                app:layout_constraintTop_toBottomOf="@+id/detail_mbti"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
             <TextView
-                android:id="@+id/editTextPhoneNumber"
+                android:id="@+id/detail_hint_call_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:hint="전화번호"
-                app:layout_constraintBottom_toTopOf="@id/roundedCornerTextView2"
-                app:layout_constraintStart_toStartOf="@+id/roundedCornerTextView2"
+                app:layout_constraintBottom_toTopOf="@+id/detail_call_num"
+                app:layout_constraintStart_toStartOf="@+id/detail_call_num"
  />
 
             <TextView
-                android:id="@+id/editTextCallNumber"
+                android:id="@+id/detail_hint_email_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:hint="이메일"
-                app:layout_constraintBottom_toTopOf="@id/roundedCornerTextView4"
-                app:layout_constraintStart_toStartOf="@+id/roundedCornerTextView4"/>
+                app:layout_constraintBottom_toTopOf="@+id/detail_email"
+                app:layout_constraintStart_toStartOf="@+id/detail_email"/>
 
 
             <TextView
-                android:id="@+id/editTextSnsAdress"
+                android:id="@+id/detail_hint_sns_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:hint="SNS 주소"
-                app:layout_constraintBottom_toTopOf="@id/roundedCornerTextView3"
-                app:layout_constraintStart_toStartOf="@+id/roundedCornerTextView3" />
+                app:layout_constraintBottom_toTopOf="@+id/detail_sns_address"
+                app:layout_constraintStart_toStartOf="@+id/detail_sns_address" />
 
             <TextView
-                android:id="@+id/editTextMbti"
+                android:id="@+id/detail_hint_mbti"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:hint="MBTI"
-                app:layout_constraintBottom_toTopOf="@id/roundedCornerTextView5"
-                app:layout_constraintStart_toStartOf="@+id/roundedCornerTextView5"
+                app:layout_constraintBottom_toTopOf="@id/detail_mbti"
+                app:layout_constraintStart_toStartOf="@id/detail_mbti"
                 />
 
             <TextView
-                android:id="@+id/editTextNickName"
+                android:id="@+id/detail_hint_nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:hint="별명"
-                app:layout_constraintBottom_toTopOf="@id/roundedCornerTextView6"
-                app:layout_constraintStart_toStartOf="@+id/roundedCornerTextView6"
+                app:layout_constraintBottom_toTopOf="@+id/detail_nick_name"
+                app:layout_constraintStart_toStartOf="@+id/detail_nick_name"
                  />
 
 
