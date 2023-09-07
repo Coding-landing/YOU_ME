@@ -53,6 +53,8 @@
                 android:id="@+id/dia_txt_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/main_font"
+                android:textColor="@color/black"
                 android:text="이름"
                 app:layout_constraintBottom_toTopOf="@+id/dia_edit_name"
                 app:layout_constraintStart_toStartOf="@+id/dia_img" />
@@ -71,6 +73,8 @@
                 android:id="@+id/dia_txt_tel_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/main_font"
+                android:textColor="@color/black"
                 android:text="전화번호"
                 app:layout_constraintBottom_toTopOf="@id/dia_edit_tel_num"
                 app:layout_constraintStart_toStartOf="@+id/dia_edit_name" />
@@ -87,6 +91,8 @@
                 android:id="@+id/dia_txt_mail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/main_font"
+                android:textColor="@color/black"
                 android:text="이메일"
                 app:layout_constraintBottom_toTopOf="@+id/dia_edit_mail"
                 app:layout_constraintStart_toStartOf="@+id/dia_edit_tel_num" />
@@ -113,6 +119,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="37dp"
+                    android:fontFamily="@font/main_font"
+                    android:textColor="@color/black"
                     android:text="sns아이디"
                     app:layout_constraintBottom_toTopOf="@+id/dia_edit_sns"
                     app:layout_constraintStart_toStartOf="parent"
@@ -132,6 +140,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="37dp"
+                    android:fontFamily="@font/main_font"
+                    android:textColor="@color/black"
                     android:text="mbti"
                     app:layout_constraintBottom_toTopOf="@+id/dia_edit_mbti"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -150,6 +160,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="37dp"
+                    android:fontFamily="@font/main_font"
+                    android:textColor="@color/black"
                     android:text="nickname"
                     app:layout_constraintBottom_toTopOf="@+id/dia_edit_nickname"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -168,6 +180,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="37dp"
+                    android:fontFamily="@font/main_font"
+                    android:textColor="@color/black"
                     android:text="blog주소"
                     app:layout_constraintBottom_toTopOf="@+id/dia_edit_blog_address"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -189,6 +203,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="70dp"
+                android:fontFamily="@font/main_font"
+                android:textColor="@color/black"
                 android:text="선택사항"
                 app:layout_constraintBottom_toTopOf="@+id/dia_cons2"
                 app:layout_constraintStart_toStartOf="@+id/dia_edit_mail" />
@@ -202,6 +218,8 @@
                 android:layout_marginEnd="80dp"
                 android:layout_marginBottom="30dp"
                 android:background="@drawable/dialog_btn"
+                android:fontFamily="@font/main_font"
+                android:textColor="@color/black"
                 android:text="확인"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
