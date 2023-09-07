@@ -43,11 +43,12 @@
 
             <ImageButton
                 android:id="@+id/buttonCall"
-                android:layout_width="100dp"
+                android:layout_width="80dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="305dp"
+                android:layout_marginTop="290dp"
                 android:layout_marginBottom="25dp"
-                android:layout_marginRight="50dp"
+                android:layout_marginRight="80dp"
+                android:background="@color/mint"
                 android:scaleType="centerCrop"
                 android:src="@drawable/icon_call2"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -55,12 +56,13 @@
 
             <ImageButton
                 android:id="@+id/imageButton"
-                android:layout_width="100dp"
-                android:layout_height="60dp"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
                 android:layout_marginTop="290dp"
                 android:layout_marginRight="150dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/icon_mail2"
+                android:background="@color/mint"
                 app:layout_constraintBottom_toTopOf="@+id/roundedCornerTextView2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
