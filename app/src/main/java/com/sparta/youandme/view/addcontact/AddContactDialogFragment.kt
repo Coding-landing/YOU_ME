@@ -70,7 +70,7 @@ class AddContactDialogFragment : Fragment() {
                 val bundle = Bundle().apply {
                     putParcelable("model",callingobject)
                 }
-                setFragment(frag,bundle)
+                setFragment(this,bundle)
             } else {
                 context.toast("다시 확인해주세요.")
             }
@@ -83,9 +83,9 @@ class AddContactDialogFragment : Fragment() {
     private fun setFragment(frag : Fragment, bundle: Bundle) {
         val activity = (requireActivity() as MainActivity)
         val viewPager = activity.findViewById<ViewPager2>(R.id.view_pager)
-        val thisFragment = activity.findViewById<FragmentContainerView>(R.id.add_contact_fragment)
         parentFragmentManager.beginTransaction().remove(this).commit()
-        thisFragment.isVisible = false
+        frag.onDestroy()
+        frag.onDestroy()
         viewPager.isVisible = true
         viewPager.setCurrentItem(0, false)
         parentFragmentManager.setFragmentResult("callingobject",bundle)
@@ -142,7 +142,7 @@ class AddContactDialogFragment : Fragment() {
                 val blog = editblog.text.toString()
                 val sns = editsns.text.toString()
                 val urlPattern = "^(https?://)?[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(\\/[a-zA-Z0-9/?=&-]*)?\$".toRegex()
-                if (blog.matches(urlPattern) && sns.matches(urlPattern)){
+                if (blog.isEmpty() && sns.isEmpty() && blog.matches(urlPattern) && sns.matches(urlPattern)){
                     binding.diaBtnWhite.isEnabled = true
                 }
                 else{binding.diaBtnWhite.isEnabled = false}
