@@ -103,7 +103,7 @@ class ContactListFragment : Fragment() {
 
     private fun initRecyclerView() = with(binding) {
         view?.isVisible = true
-        fab?.isVisible = true
+        fab?.show()
         mainAdapter = ContactListAdapter().apply {
             val items =
                 CallObjectData.list.sortedWith(compareByDescending<CallingObject> { it.isLiked }.thenBy { it.name })
