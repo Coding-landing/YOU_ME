@@ -63,7 +63,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="120dp"
                 android:ems="10"
-                android:inputType="textPassword"
                 app:layout_constraintBottom_toTopOf="@id/dia_txt_tel_num"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/dia_txt_name" />
@@ -81,7 +80,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPassword"
                 app:layout_constraintBottom_toTopOf="@id/dia_txt_mail"
                 app:layout_constraintStart_toStartOf="@+id/dia_txt_tel_num" />
 
@@ -98,7 +96,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPassword"
                 app:layout_constraintBottom_toTopOf="@+id/dia_check_box"
                 app:layout_constraintStart_toStartOf="@+id/dia_txt_mail" />
 
@@ -127,7 +124,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="37dp"
                     android:ems="10"
-                    android:inputType="textPassword"
                     app:layout_constraintBottom_toTopOf="@+id/dia_txt_mbti"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -146,7 +142,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="37dp"
                     android:ems="10"
-                    android:inputType="textPassword"
                     app:layout_constraintBottom_toTopOf="@+id/dia_txt_nickname"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -165,7 +160,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="37dp"
                     android:ems="10"
-                    android:inputType="textPassword"
                     app:layout_constraintBottom_toTopOf="@+id/dia_txt_blog_address"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -185,7 +179,6 @@
                     android:layout_marginStart="37dp"
                     android:layout_marginBottom="20dp"
                     android:ems="10"
-                    android:inputType="textPassword"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
