@@ -3,17 +3,22 @@ package com.sparta.youandme.view.addcontact
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.core.view.isVisible
+import androidx.fragment.app.FragmentContainerView
+import androidx.viewpager2.widget.ViewPager2
 import com.sparta.youandme.R
 import com.sparta.youandme.databinding.FragmentAddContactDialogBinding
 import com.sparta.youandme.extension.ContextExtension.toast
-import java.util.regex.Pattern
+import com.sparta.youandme.model.CallingObject
+import com.sparta.youandme.view.main.ContactListFragment
+import com.sparta.youandme.view.main.MainActivity
+import java.util.UUID
 
 
 class AddContactDialogFragment : Fragment() {
@@ -23,6 +28,8 @@ class AddContactDialogFragment : Fragment() {
     private lateinit var editsns: EditText
     private lateinit var editname: EditText
     private lateinit var editblog: EditText
+    private lateinit var editmbit :EditText
+    private lateinit var editnickname : EditText
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAddContactDialogBinding.bind(view)
@@ -32,6 +39,8 @@ class AddContactDialogFragment : Fragment() {
         editsns = binding.diaEditSns
         editname = binding.diaEditName
         editblog = binding.diaEditBlogAddress
+        editmbit = binding.diaEditMbti
+        editnickname = binding.diaEditNickname
         val context = requireContext()
         editelnum.addTextChangedListener(createUserTextWatcher(editelnum))
         editmail.addTextChangedListener(createUserTextWatcher(editmail))
@@ -44,11 +53,42 @@ class AddContactDialogFragment : Fragment() {
             ) {
                 context.toast("연락처 추가 성공!")
                 btn.isEnabled = true
+
+                val frag = ContactListFragment()
+                val callingobject = CallingObject(
+                    id = UUID.randomUUID().toString(),
+                    name = editname.text.toString(),
+                    mobileNumber = editelnum.text.toString(),
+                    email = editmail.text.toString(),
+                    snsAddress = editsns.text.toString(),
+                    mbti = editmbit.text.toString(),
+                    nickName = editnickname.text.toString(),
+                    blogAddress = editblog.text.toString(),
+                    imgId = R.drawable.bg_hyerin,
+                    type = -1
+                )
+                val bundle = Bundle().apply {
+                    putParcelable("model",callingobject)
+                }
+                setFragment(frag,bundle)
             } else {
                 context.toast("다시 확인해주세요.")
             }
+
+
         }
 
+    }
+
+    private fun setFragment(frag : Fragment, bundle: Bundle) {
+        val activity = (requireActivity() as MainActivity)
+        val viewPager = activity.findViewById<ViewPager2>(R.id.view_pager)
+        val thisFragment = activity.findViewById<FragmentContainerView>(R.id.add_contact_fragment)
+        parentFragmentManager.beginTransaction().remove(this).commit()
+        thisFragment.isVisible = false
+        viewPager.isVisible = true
+        viewPager.setCurrentItem(0, false)
+        parentFragmentManager.setFragmentResult("callingobject",bundle)
     }
 
     override fun onCreateView(
