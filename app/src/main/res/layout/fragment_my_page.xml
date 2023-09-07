@@ -6,336 +6,347 @@
     android:layout_height="match_parent"
     android:background="@color/teal">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            app:cardCornerRadius="360dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/my_image"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_talent_2" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/my_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24sp"
+            android:fontFamily="@font/main_font"
+            android:text="박지효"
+            android:textColor="@color/dark_green"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+
+        <TextView
+            android:id="@+id/abcd"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="152dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/circular_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/my_name" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                app:cardCornerRadius="360dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/phone_ex"
+            android:layout_width="65dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/teduri"
+            android:gravity="center"
+            android:text="번호"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toTopOf="@+id/view1"
+            app:layout_constraintStart_toStartOf="@+id/abcd"
+            app:layout_constraintTop_toTopOf="@+id/abcd" />
 
-                <ImageView
-                    android:id="@+id/my_image"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/bg_talent_2" />
-            </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/my_phone_number"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/main_font"
+            android:gravity="fill_vertical"
+            android:text="010-1234-5678"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/view1"
+            app:layout_constraintEnd_toStartOf="@+id/my_call"
+            app:layout_constraintStart_toEndOf="@+id/phone_ex"
+            app:layout_constraintTop_toTopOf="@+id/abcd" />
 
-            <TextView
-                android:id="@+id/my_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24sp"
-                android:fontFamily="@font/main_font"
-                android:text="박지효"
-                android:textSize="30dp"
-                android:textColor="@color/dark_green"
-                app:layout_constraintEnd_toEndOf="@+id/cardView"
-                app:layout_constraintStart_toStartOf="@+id/cardView"
-                app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="51dp"
+            android:layout_marginEnd="30dp"
+            android:background="@color/light_mint"
+            app:layout_constraintEnd_toEndOf="@+id/abcd"
+            app:layout_constraintStart_toStartOf="@+id/abcd"
+            app:layout_constraintTop_toTopOf="@+id/abcd" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/email_ex"
+            android:layout_width="65dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/teduri"
+            android:gravity="center"
+            android:text="이메일"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toTopOf="@+id/view2"
+            app:layout_constraintStart_toStartOf="@+id/abcd"
+            app:layout_constraintTop_toTopOf="@+id/view1" />
 
-            <TextView
-                android:id="@+id/abcd"
-                android:layout_width="match_parent"
-                android:layout_height="152dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="25dp"
-                android:background="@drawable/circular_background"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/my_name" />
+        <TextView
+            android:id="@+id/my_email"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/main_font"
+            android:gravity="fill_vertical"
+            android:text="abcdef123@gmail.com"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/view2"
+            app:layout_constraintEnd_toStartOf="@+id/my_emailbt"
+            app:layout_constraintStart_toEndOf="@+id/email_ex"
+            app:layout_constraintTop_toBottomOf="@+id/view1" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/phone_ex"
-                android:layout_width="65dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/teduri"
-                android:gravity="center"
-                android:text="번호"
-                android:textSize="14dp"
-                app:layout_constraintBottom_toTopOf="@+id/view1"
-                app:layout_constraintStart_toStartOf="@+id/abcd"
-                app:layout_constraintTop_toTopOf="@+id/abcd" />
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="102dp"
+            android:layout_marginEnd="30dp"
+            android:background="@color/light_mint"
+            app:layout_constraintEnd_toEndOf="@+id/abcd"
+            app:layout_constraintStart_toStartOf="@+id/abcd"
+            app:layout_constraintTop_toTopOf="@+id/abcd" />
 
-            <TextView
-                android:id="@+id/my_phone_number"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_marginStart="10dp"
-                android:gravity="fill_vertical"
-                android:text="010-1234-5678"
-                android:textSize="18sp"
-                android:fontFamily="@font/main_font"
-                app:layout_constraintStart_toEndOf="@+id/phone_ex"
-                app:layout_constraintTop_toTopOf="@+id/abcd" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sns_ex"
+            android:layout_width="65dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/teduri"
+            android:gravity="center"
+            android:text="SNS"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="@+id/abcd"
+            app:layout_constraintStart_toStartOf="@+id/abcd"
+            app:layout_constraintTop_toTopOf="@+id/view2" />
 
-            <View
-                android:id="@+id/view1"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="51dp"
-                android:layout_marginEnd="30dp"
-                android:background="@color/light_mint"
-                app:layout_constraintEnd_toEndOf="@+id/abcd"
-                app:layout_constraintStart_toStartOf="@+id/abcd"
-                app:layout_constraintTop_toTopOf="@+id/abcd" />
+        <TextView
+            android:id="@+id/my_sns"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:ellipsize="none"
+            android:fontFamily="@font/main_font"
+            android:gravity="fill_vertical"
+            android:text="instagram.com/xxxxx123"
+            android:textSize="18sp"
+            android:maxLines="2"
+            app:layout_constraintBottom_toBottomOf="@+id/abcd"
+            app:layout_constraintEnd_toStartOf="@+id/my_snsbt"
+            app:layout_constraintStart_toEndOf="@+id/sns_ex"
+            app:layout_constraintTop_toBottomOf="@+id/my_email" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/email_ex"
-                android:layout_width="65dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/teduri"
-                android:gravity="center"
-                android:text="이메일"
-                android:textSize="14dp"
-                app:layout_constraintBottom_toTopOf="@+id/view2"
-                app:layout_constraintStart_toStartOf="@+id/abcd"
-                app:layout_constraintTop_toTopOf="@+id/view1" />
+        <TextView
+            android:id="@+id/abcde"
+            android:layout_width="match_parent"
+            android:layout_height="152dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/circular_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/abcd" />
 
-            <TextView
-                android:id="@+id/my_email"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_marginStart="8dp"
-                android:gravity="fill_vertical"
-                android:text="abcdef123@gmail.com"
-                android:fontFamily="@font/main_font"
-                android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/email_ex"
-                app:layout_constraintTop_toBottomOf="@+id/view1" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/mbti_ex"
+            android:layout_width="65dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/teduri"
+            android:gravity="center"
+            android:text="mbti"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toTopOf="@+id/view3"
+            app:layout_constraintStart_toStartOf="@+id/abcde"
+            app:layout_constraintTop_toTopOf="@+id/abcde" />
 
-            <View
-                android:id="@+id/view2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="102dp"
-                android:layout_marginEnd="30dp"
-                android:background="@color/light_mint"
-                app:layout_constraintEnd_toEndOf="@+id/abcd"
-                app:layout_constraintStart_toStartOf="@+id/abcd"
-                app:layout_constraintTop_toTopOf="@+id/abcd" />
+        <TextView
+            android:id="@+id/my_mbti"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/main_font"
+            android:gravity="fill_vertical"
+            android:text="ISFP"
+            android:textSize="18sp"
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/sns_ex"
-                android:layout_width="65dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/teduri"
-                android:gravity="center"
-                android:text="SNS"
-                android:textSize="14dp"
-                app:layout_constraintBottom_toBottomOf="@+id/abcd"
-                app:layout_constraintStart_toStartOf="@+id/abcd"
-                app:layout_constraintTop_toTopOf="@+id/view2" />
+            app:layout_constraintBottom_toTopOf="@+id/view3"
+            app:layout_constraintEnd_toEndOf="@+id/abcde"
+            app:layout_constraintStart_toEndOf="@+id/mbti_ex"
+            app:layout_constraintTop_toTopOf="@+id/abcde" />
 
-            <TextView
-                android:id="@+id/my_sns"
-                android:layout_width="260dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="10dp"
-                android:ellipsize="none"
-                android:gravity="fill_vertical"
-                android:text="instagram.com/xxxxx123"
-                android:fontFamily="@font/main_font"
-                android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/sns_ex"
-                app:layout_constraintTop_toBottomOf="@+id/my_email" />
+        <View
+            android:id="@+id/view3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="51dp"
+            android:layout_marginEnd="30dp"
+            android:background="@color/light_mint"
+            app:layout_constraintEnd_toEndOf="@+id/abcd"
+            app:layout_constraintStart_toStartOf="@+id/abcde"
+            app:layout_constraintTop_toTopOf="@+id/abcde" />
 
-            <TextView
-                android:id="@+id/abcde"
-                android:layout_width="match_parent"
-                android:layout_height="152dp"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="25dp"
-                android:background="@drawable/circular_background"
-                app:layout_constraintTop_toBottomOf="@+id/abcd" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/nick_ex"
+            android:layout_width="65dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/teduri"
+            android:gravity="center"
+            android:text="별명"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toTopOf="@+id/view4"
+            app:layout_constraintStart_toStartOf="@+id/abcde"
+            app:layout_constraintTop_toTopOf="@+id/view3" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/mbti_ex"
-                android:layout_width="65dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/teduri"
-                android:gravity="center"
-                android:text="mbti"
-                android:textSize="14dp"
-                app:layout_constraintBottom_toTopOf="@+id/view3"
-                app:layout_constraintStart_toStartOf="@+id/abcde"
-                app:layout_constraintTop_toTopOf="@+id/abcde" />
+        <TextView
+            android:id="@+id/my_nickname"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/main_font"
+            android:gravity="fill_vertical"
+            android:text="10년차 연습생"
+            android:textSize="18sp"
 
-            <TextView
-                android:id="@+id/my_mbti"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_marginStart="10dp"
-                android:gravity="fill_vertical"
-                android:text="ISFP"
-                android:fontFamily="@font/main_font"
-                android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/my_blog_adress"
+            app:layout_constraintEnd_toEndOf="@+id/abcde"
+            app:layout_constraintStart_toEndOf="@+id/nick_ex"
+            app:layout_constraintTop_toBottomOf="@+id/view3" />
 
-                app:layout_constraintStart_toEndOf="@+id/mbti_ex"
-                app:layout_constraintTop_toTopOf="@+id/abcde" />
+        <View
+            android:id="@+id/view4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="102dp"
+            android:layout_marginEnd="30dp"
+            android:background="@color/light_mint"
+            app:layout_constraintEnd_toEndOf="@+id/abcde"
+            app:layout_constraintStart_toStartOf="@+id/abcde"
+            app:layout_constraintTop_toTopOf="@+id/abcde" />
 
-            <View
-                android:id="@+id/view3"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="51dp"
-                android:layout_marginEnd="30dp"
-                android:background="@color/light_mint"
-                app:layout_constraintEnd_toEndOf="@+id/abcd"
-                app:layout_constraintStart_toStartOf="@+id/abcde"
-                app:layout_constraintTop_toTopOf="@+id/abcde" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/blog_ex"
+            android:layout_width="65dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/teduri"
+            android:gravity="center"
+            android:text="Blog"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="@+id/abcde"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="@+id/abcde"
+            app:layout_constraintTop_toBottomOf="@+id/my_nickname" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/nick_ex"
-                android:layout_width="65dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/teduri"
-                android:gravity="center"
-                android:text="별명"
-                android:textSize="14dp"
-                app:layout_constraintBottom_toTopOf="@+id/view4"
-                app:layout_constraintStart_toStartOf="@+id/abcde"
-                app:layout_constraintTop_toTopOf="@+id/view3" />
+        <TextView
+            android:id="@+id/my_blog_adress"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/main_font"
+            android:gravity="fill_vertical"
+            android:maxLines="2"
+            android:text="https://sunho0226.tistory.com/manage"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/abcde"
+            app:layout_constraintEnd_toStartOf="@+id/my_blogbt"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/blog_ex"
+            app:layout_constraintTop_toBottomOf="@+id/view4" />
 
-            <TextView
-                android:id="@+id/my_nickname"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_marginStart="10dp"
-                android:gravity="fill_vertical"
-                android:text="10년차 연습생"
-                android:fontFamily="@font/main_font"
-                android:textSize="18sp"
+        <TextView
+            android:id="@+id/kisulbujoc"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/abcde" />
 
-                app:layout_constraintStart_toEndOf="@+id/nick_ex"
-                app:layout_constraintTop_toBottomOf="@+id/view3" />
+        <ImageView
+            android:id="@+id/my_call"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/my_message"
+            app:layout_constraintEnd_toStartOf="@+id/my_message"
+            app:layout_constraintTop_toTopOf="@+id/my_message"
+            app:srcCompat="@drawable/call_11" />
 
-            <View
-                android:id="@+id/view4"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="102dp"
-                android:layout_marginEnd="30dp"
-                android:background="@color/light_mint"
-                app:layout_constraintEnd_toEndOf="@+id/abcde"
-                app:layout_constraintStart_toStartOf="@+id/abcde"
-                app:layout_constraintTop_toTopOf="@+id/abcde" />
+        <ImageView
+            android:id="@+id/my_message"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/my_email"
+            app:layout_constraintEnd_toEndOf="@+id/abcd"
+            app:layout_constraintTop_toTopOf="@+id/abcd"
+            app:srcCompat="@drawable/icon_mes1" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/blog_ex"
-                android:layout_width="65dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/teduri"
-                android:gravity="center"
-                android:text="Blog"
-                android:textSize="14dp"
-                app:layout_constraintBottom_toBottomOf="@+id/abcde"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toStartOf="@+id/abcde"
-                app:layout_constraintTop_toBottomOf="@+id/my_nickname" />
+        <ImageView
+            android:id="@+id/my_emailbt"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/my_email"
+            app:layout_constraintEnd_toEndOf="@+id/abcd"
+            app:layout_constraintTop_toTopOf="@+id/my_email"
+            app:srcCompat="@drawable/icon_mail" />
 
-            <TextView
-                android:id="@+id/my_blog_adress"
-                android:layout_width="250dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="10dp"
-                android:ellipsize="none"
-                android:gravity="fill_vertical"
-                android:text="https://sunho0226.tistory.com/manage"
-                android:fontFamily="@font/main_font"
-                android:textSize="18sp"
+        <ImageView
+            android:id="@+id/my_snsbt"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/abcd"
+            app:layout_constraintEnd_toEndOf="@+id/abcd"
+            app:layout_constraintTop_toBottomOf="@+id/my_email"
+            app:srcCompat="@drawable/icon_sns" />
 
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toEndOf="@+id/blog_ex"
-                app:layout_constraintTop_toBottomOf="@+id/view4" />
-
-            <TextView
-                android:id="@+id/kisulbujoc"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/abcde" />
-
-            <ImageView
-                android:id="@+id/my_call"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="10dp"
-                app:layout_constraintBottom_toBottomOf="@+id/my_message"
-                app:layout_constraintEnd_toStartOf="@+id/my_message"
-                app:layout_constraintTop_toTopOf="@+id/my_message"
-                app:srcCompat="@drawable/call_11" />
-
-            <ImageView
-                android:id="@+id/my_message"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/my_email"
-                app:layout_constraintEnd_toEndOf="@+id/abcd"
-                app:layout_constraintTop_toTopOf="@+id/abcd"
-                app:srcCompat="@drawable/icon_mes1" />
-
-            <ImageView
-                android:id="@+id/my_emailbt"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="10dp"
-                app:layout_constraintBottom_toBottomOf="@+id/my_email"
-                app:layout_constraintEnd_toEndOf="@+id/abcd"
-                app:layout_constraintTop_toTopOf="@+id/my_email"
-                app:srcCompat="@drawable/icon_mail" />
-
-            <ImageView
-                android:id="@+id/my_snsbt"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="10dp"
-                app:layout_constraintBottom_toBottomOf="@+id/abcd"
-                app:layout_constraintEnd_toEndOf="@+id/abcd"
-                app:layout_constraintTop_toBottomOf="@+id/my_email"
-                app:srcCompat="@drawable/icon_sns" />
-
-            <ImageView
-                android:id="@+id/my_blogbt"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="10dp"
-                app:layout_constraintBottom_toBottomOf="@+id/my_blog_adress"
-                app:layout_constraintEnd_toEndOf="@+id/abcde"
-                app:layout_constraintTop_toTopOf="@+id/my_blog_adress"
-                app:srcCompat="@drawable/icon_blog" />
+        <ImageView
+            android:id="@+id/my_blogbt"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/my_blog_adress"
+            app:layout_constraintEnd_toEndOf="@+id/abcde"
+            app:layout_constraintTop_toTopOf="@+id/my_blog_adress"
+            app:srcCompat="@drawable/icon_blog" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

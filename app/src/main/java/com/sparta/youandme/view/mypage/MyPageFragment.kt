@@ -14,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import android.Manifest
+import androidx.appcompat.app.AlertDialog
 import com.sparta.youandme.R
 
 class MyPageFragment : Fragment() {
@@ -51,13 +52,15 @@ class MyPageFragment : Fragment() {
         } // blog관련 웹서치
 
         view.findViewById<ImageView>(R.id.my_call).setOnClickListener {
-            callPhoneNumber()
+            showCallConfirmationDialog()
         } // 전화 관련
+
     }
 
     private fun openMessagingApp() {
         val intent = Intent(Intent.ACTION_MAIN)
         intent.addCategory(Intent.CATEGORY_APP_MESSAGING)
+        Toast.makeText(requireContext(), "메세지앱을 실행합니다.", Toast.LENGTH_SHORT).show()
         startActivity(intent)
     }
 
@@ -65,6 +68,7 @@ class MyPageFragment : Fragment() {
         val intent = Intent(Intent.ACTION_SENDTO).apply {
             data = Uri.parse("mailto:")
         }
+        Toast.makeText(requireContext(), "메일앱을 실행합니다.", Toast.LENGTH_SHORT).show()
         intent.setPackage("com.google.android.gm")
 
         try {
@@ -81,12 +85,28 @@ class MyPageFragment : Fragment() {
     private fun searchOnWeb(query: String) {
         val intent = Intent(Intent.ACTION_WEB_SEARCH)
         intent.putExtra("query", query)
+        Toast.makeText(requireContext(), "해당 주소로 이동합니다.", Toast.LENGTH_SHORT).show()
         startActivity(intent)
     }
 
-    private fun callPhoneNumber() {
+    private fun showCallConfirmationDialog() {
         val phoneNumber = phoneNumberTextView.text.toString()
 
+        val alertDialogBuilder = AlertDialog.Builder(requireContext())
+
+        alertDialogBuilder
+            .setMessage("정말 전화를 거시겠습니까?")
+            .setPositiveButton("예") { _, _ ->
+                makePhoneCall(phoneNumber)
+            }
+            .setNegativeButton("아니오") { _, _ ->
+            }
+
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
+    }
+
+    private fun makePhoneCall(phoneNumber: String) {
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.CALL_PHONE
@@ -103,6 +123,7 @@ class MyPageFragment : Fragment() {
             )
         }
     }
+
 
     companion object {
         fun newInstance() = MyPageFragment()
