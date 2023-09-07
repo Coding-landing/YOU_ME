@@ -81,16 +81,6 @@ object CallObjectData {
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
-            imgId = R.drawable.bg_talent_2,
-            name ="박지효",
-            mobileNumber = "010-9876-9898",
-            email ="zyozyo12@naver.com",
-            snsAddress ="https://www.instagram.com/_zyozyo/",
-            mbti = "ESFP",
-            type = ViewType.DEFAULT_POSITION
-        ),
-        CallingObject(
-            id = UUID.randomUUID().toString(),
             imgId = R.drawable.bg_talent_3,
             name ="황민현",
             mobileNumber = "010-8894-4988",
