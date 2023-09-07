@@ -8,4 +8,5 @@
     <color name="light_mint">#93FB93</color>
     <color name="dark_mint">#00D4BB</color>
     <color name="dark_green">#1D6716</color>
+    <color name="light_green_alpha">#4D93FB93</color>
 </resources>
