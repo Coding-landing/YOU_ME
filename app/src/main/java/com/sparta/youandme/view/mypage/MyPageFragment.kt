@@ -2,6 +2,7 @@ package com.sparta.youandme.view.mypage
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,6 +12,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import android.Manifest
 import com.sparta.youandme.R
 
 class MyPageFragment : Fragment() {
@@ -22,16 +25,28 @@ class MyPageFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_my_page, container, false)
 
         val phoneNumberTextView = view.findViewById<TextView>(R.id.my_phone_number)
-
+        val REQUEST_CALL_PHONE_PERMISSION = 1
         val myCallImageView = view.findViewById<ImageView>(R.id.my_call)
         myCallImageView.setOnClickListener {
             val phoneNumber = phoneNumberTextView.text.toString()
 
-            val intent = Intent(Intent.ACTION_CALL)
-            intent.data = Uri.parse("tel:$phoneNumber")
+            // 권한이 이미 허용되었는지 확인
+            if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                // 이미 권한이 허용된 경우, 전화 걸기 시도
+                val intent = Intent(Intent.ACTION_CALL)
+                intent.data = Uri.parse("tel:$phoneNumber")
 
-            startActivity(intent)
+                startActivity(intent)
+            } else {
+                // 권한이 없는 경우, 권한 요청
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    arrayOf(Manifest.permission.CALL_PHONE),
+                    REQUEST_CALL_PHONE_PERMISSION
+                )
+            }
         }
+
 
         val myMessageImage = view.findViewById<ImageView>(R.id.my_message)
 
