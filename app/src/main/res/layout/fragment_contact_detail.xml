@@ -3,12 +3,203 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-   >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/mint">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:cardCornerRadius="100dp"
+        android:layout_marginLeft="105dp"
+        android:layout_marginTop="80dp"
+        >
+
+
+        <ImageView
+            android:id="@+id/roundedImageView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_seungchul"/>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="3" />
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/dia_cons1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageButton
+                android:id="@+id/buttonCall"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="290dp"
+                android:layout_marginBottom="25dp"
+                android:layout_marginRight="80dp"
+                android:background="@color/mint"
+                android:scaleType="centerCrop"
+                android:src="@drawable/icon_call2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="290dp"
+                android:layout_marginRight="150dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/icon_mail2"
+                android:background="@color/mint"
+                app:layout_constraintBottom_toTopOf="@+id/roundedCornerTextView2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="이름"
+                android:textSize="18sp"
+                android:layout_marginTop="51dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
+            <TextView
+                android:id="@+id/roundedCornerTextView2"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/dialog_back_mint"
+                android:padding="16dp"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageButton" />
+
+
+            <TextView
+                android:id="@+id/roundedCornerTextView3"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/dialog_back_mint"
+                android:padding="16dp"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/roundedCornerTextView2" />
+
+            <TextView
+                android:id="@+id/roundedCornerTextView4"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/dialog_back_mint"
+                android:padding="16dp"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/roundedCornerTextView3" />
+
+            <TextView
+                android:id="@+id/roundedCornerTextView5"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/dialog_back_mint"
+                android:padding="16dp"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/roundedCornerTextView4" />
+
+            <TextView
+                android:id="@+id/roundedCornerTextView6"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/dialog_back_mint"
+                android:padding="16dp"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/roundedCornerTextView5"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:id="@+id/editTextPhoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:hint="전화번호"
+                app:layout_constraintBottom_toTopOf="@id/roundedCornerTextView2"
+                app:layout_constraintStart_toStartOf="@+id/roundedCornerTextView2"
+ />
+
+            <TextView
+                android:id="@+id/editTextCallNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:hint="이메일"
+                app:layout_constraintBottom_toTopOf="@id/roundedCornerTextView4"
+                app:layout_constraintStart_toStartOf="@+id/roundedCornerTextView4"/>
+
+
+            <TextView
+                android:id="@+id/editTextSnsAdress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:hint="SNS 주소"
+                app:layout_constraintBottom_toTopOf="@id/roundedCornerTextView3"
+                app:layout_constraintStart_toStartOf="@+id/roundedCornerTextView3" />
+
+            <TextView
+                android:id="@+id/editTextMbti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:hint="MBTI"
+                app:layout_constraintBottom_toTopOf="@id/roundedCornerTextView5"
+                app:layout_constraintStart_toStartOf="@+id/roundedCornerTextView5"
+                />
+
+            <TextView
+                android:id="@+id/editTextNickName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:hint="별명"
+                app:layout_constraintBottom_toTopOf="@id/roundedCornerTextView6"
+                app:layout_constraintStart_toStartOf="@+id/roundedCornerTextView6"
+                 />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </FrameLayout>
