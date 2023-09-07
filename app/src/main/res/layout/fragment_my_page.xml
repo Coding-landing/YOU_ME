@@ -40,8 +40,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24sp"
                 android:fontFamily="@font/main_font"
-                android:text="지효 (박지효)"
-                android:textSize="24dp"
+                android:text="박지효"
+                android:textSize="30dp"
+                android:textColor="@color/dark_green"
                 app:layout_constraintEnd_toEndOf="@+id/cardView"
                 app:layout_constraintStart_toStartOf="@+id/cardView"
                 app:layout_constraintTop_toBottomOf="@+id/cardView" />
@@ -80,7 +81,7 @@
                 android:gravity="fill_vertical"
                 android:text="010-1234-5678"
                 android:textSize="18sp"
-                android:textStyle="bold"
+                android:fontFamily="@font/main_font"
                 app:layout_constraintStart_toEndOf="@+id/phone_ex"
                 app:layout_constraintTop_toTopOf="@+id/abcd" />
 
@@ -116,8 +117,8 @@
                 android:layout_marginStart="8dp"
                 android:gravity="fill_vertical"
                 android:text="abcdef123@gmail.com"
+                android:fontFamily="@font/main_font"
                 android:textSize="18sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/email_ex"
                 app:layout_constraintTop_toBottomOf="@+id/view1" />
 
@@ -154,8 +155,8 @@
                 android:ellipsize="none"
                 android:gravity="fill_vertical"
                 android:text="instagram.com/xxxxx123"
+                android:fontFamily="@font/main_font"
                 android:textSize="18sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/sns_ex"
                 app:layout_constraintTop_toBottomOf="@+id/my_email" />
 
@@ -190,8 +191,9 @@
                 android:layout_marginStart="10dp"
                 android:gravity="fill_vertical"
                 android:text="ISFP"
+                android:fontFamily="@font/main_font"
                 android:textSize="18sp"
-                android:textStyle="bold"
+
                 app:layout_constraintStart_toEndOf="@+id/mbti_ex"
                 app:layout_constraintTop_toTopOf="@+id/abcde" />
 
@@ -228,8 +230,9 @@
                 android:layout_marginStart="10dp"
                 android:gravity="fill_vertical"
                 android:text="10년차 연습생"
+                android:fontFamily="@font/main_font"
                 android:textSize="18sp"
-                android:textStyle="bold"
+
                 app:layout_constraintStart_toEndOf="@+id/nick_ex"
                 app:layout_constraintTop_toBottomOf="@+id/view3" />
 
@@ -261,14 +264,15 @@
 
             <TextView
                 android:id="@+id/my_blog_adress"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_width="250dp"
+                android:layout_height="0dp"
                 android:layout_marginStart="10dp"
                 android:ellipsize="none"
                 android:gravity="fill_vertical"
                 android:text="https://sunho0226.tistory.com/manage"
+                android:fontFamily="@font/main_font"
                 android:textSize="18sp"
-                android:textStyle="bold"
+
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toEndOf="@+id/blog_ex"
                 app:layout_constraintTop_toBottomOf="@+id/view4" />
