@@ -18,6 +18,8 @@ import com.sparta.youandme.R
 import com.sparta.youandme.data.CallObjectData
 import com.sparta.youandme.data.CallObjectData.gridList
 import com.sparta.youandme.databinding.FragmentContactListBinding
+import com.sparta.youandme.model.CallingObject
+import com.sparta.youandme.model.ViewType
 import com.sparta.youandme.view.detail.ContactDetailFragment
 import com.sparta.youandme.view.main.recyclerview.adapter.ContactListAdapter
 import com.sparta.youandme.view.main.recyclerview.listener.ItemClickListener
@@ -77,10 +79,6 @@ class ContactListFragment : Fragment() {
             inflateMenu(R.menu.main_menu)
             setOnMenuItemClickListener(menuClickListener)
         }
-        swipeLayout.setOnRefreshListener {
-            mainAdapter.sortingLikedList()
-            swipeLayout.isRefreshing = false
-        }
     }
 
     private fun setOnClickListener() {
@@ -103,7 +101,12 @@ class ContactListFragment : Fragment() {
     private fun initRecyclerView() = with(binding) {
         view?.isVisible = true
         mainAdapter = ContactListAdapter().apply {
-            val items = CallObjectData.list.sortedByDescending { it.isLiked }
+            val items =
+                CallObjectData.list.sortedWith(compareByDescending<CallingObject> { it.isLiked }.thenBy { it.name })
+                    .onEachIndexed { index, callingObject ->
+                        callingObject.type =
+                            if (index % 2 == 0) ViewType.LEFT_POSITION else ViewType.RIGHT_POSITION
+                    }
             if (manager is GridLayoutManager) {
                 addItems(gridList)
                 return@apply

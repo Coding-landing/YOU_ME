@@ -15,7 +15,7 @@ import com.sparta.youandme.view.main.recyclerview.listener.ItemClickListener
 import java.lang.RuntimeException
 
 class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val _list = arrayListOf<CallingObject>()
+    private var _list = arrayListOf<CallingObject>()
     val list: List<CallingObject>
         get() = _list
     private lateinit var itemClickListener: ItemClickListener
@@ -74,17 +74,32 @@ class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemCount(): Int = _list.size
 
-    fun sortingLikedList() {
-        val sortedList = _list.sortedByDescending { it.isLiked }
+    fun sortingLikedList(position: Int, isLiked: Boolean) {
+        val targetItem = _list[position]
+        var sortedList = sortingList()
+
+        if(sortedList[position].id == targetItem.id) {
+            targetItem.isLiked = !isLiked
+            sortedList = sortingList()
+
+        }
         addItems(sortedList)
+        notifyItemMoved(position, sortedList.indexOf(targetItem))
     }
+    private fun sortingList() =
+        _list.sortedWith(compareByDescending<CallingObject> { it.isLiked }.thenBy { it.name })
+            .onEachIndexed { index, callingObject ->
+                callingObject.type =
+                    if (index % 2 == 0) ViewType.LEFT_POSITION else ViewType.RIGHT_POSITION
+            }
 
     private fun isLikedResources(isLiked: Boolean, checkBox: CheckBox) {
-        when(isLiked) {
+        when (isLiked) {
             true -> checkBox.setBackgroundResource(R.drawable.icon_heart_on)
             false -> checkBox.setBackgroundResource(R.drawable.icon_heart)
         }
     }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = _list[position]
         when (item.type) {
@@ -101,6 +116,7 @@ class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 itemClickListener.onItemClick(adapterPosition)
             }
         }
+
         fun bind(model: CallingObject) = with(binding) {
             peopleImageView.setImageResource(model.imgId)
             nameTextView.text = model.name
@@ -115,7 +131,8 @@ class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 isLikedResources(model.isLiked, this)
                 setOnCheckedChangeListener { _, isChecked ->
                     model.isLiked = isChecked
-                    isLikedResources(model.isLiked, this)
+                    isLikedResources(isChecked, this)
+                    sortingLikedList(adapterPosition, isChecked)
                 }
             }
         }
@@ -128,6 +145,7 @@ class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 itemClickListener.onItemClick(adapterPosition)
             }
         }
+
         fun bind(model: CallingObject) = with(binding) {
             peopleImageView.setImageResource(model.imgId)
             nameTextView.text = model.name
@@ -143,7 +161,8 @@ class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 isLikedResources(model.isLiked, this)
                 setOnCheckedChangeListener { _, isChecked ->
                     model.isLiked = isChecked
-                    isLikedResources(model.isLiked, this)
+                    isLikedResources(isChecked, this)
+                    sortingLikedList(adapterPosition, isChecked)
                 }
             }
         }
@@ -156,6 +175,7 @@ class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 itemClickListener.onItemClick(adapterPosition)
             }
         }
+
         fun bind(model: CallingObject) = with(binding) {
             gridImageView.setImageResource(model.imgId)
             gridTextView.text = model.name

@@ -28,9 +28,10 @@ class MainActivity : AppCompatActivity() {
                 viewPager.isVisible = true
                 if (viewPagerAdapter.getFragment(position) is MyPageFragment) {
                     fabAddTodo.hide()
-                } else {
-                    fabAddTodo.show()
+                    return
                 }
+                fabAddTodo.show()
+
             }
         }
     }
@@ -64,20 +65,43 @@ class MainActivity : AppCompatActivity() {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when (tab?.position) {
                     0 -> {
+                        addContactFragment.isVisible = false
                         viewPager.isVisible = true
+                        fabAddTodo.show()
                         viewPager.setCurrentItem(0, false)
                     }
-                    1 -> viewPager.setCurrentItem(1, false)
+                    1 -> {
+                        viewPager.setCurrentItem(1, false)
+                    }
 
-                    2 -> viewPager.setCurrentItem(2, false)
+                    2 -> {
+                        tabLayout.isVisible = true
+                        addContactFragment.isVisible = false
+                        viewPager.isVisible = true
+                        fabAddTodo.show()
+                        viewPager.setCurrentItem(2, false)
+                    }
                 }
             }
             override fun onTabUnselected(tab: TabLayout.Tab?) = Unit
             override fun onTabReselected(tab: TabLayout.Tab?) {
                 when (tab?.position) {
                     0 -> {
+                        addContactFragment.isVisible = false
                         viewPager.isVisible = true
+                        fabAddTodo.show()
                         viewPager.setCurrentItem(0, false)
+                    }
+                    1 -> {
+                        viewPager.setCurrentItem(1, false)
+                    }
+
+                    2 -> {
+                        addContactFragment.isVisible = false
+                        tabLayout.isVisible = true
+                        viewPager.isVisible = true
+                        fabAddTodo.show()
+                        viewPager.setCurrentItem(2, false)
                     }
                 }
             }
@@ -98,12 +122,16 @@ class MainActivity : AppCompatActivity() {
     private fun initButton() = with(binding) {
         fabAddTodo.setOnClickListener {
             changeFragment(R.id.add_contact_fragment, AddContactDialogFragment.newInstance())
+            fabAddTodo.hide()
         }
     }
 
     fun changeFragment(@IdRes fragmentId: Int, fragment: Fragment) = with(binding) {
         viewPager.isVisible = false
         addContactFragment.isVisible = true
-        supportFragmentManager.beginTransaction().replace(fragmentId, fragment).commit()
+        supportFragmentManager.beginTransaction()
+            .add(fragmentId, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }
