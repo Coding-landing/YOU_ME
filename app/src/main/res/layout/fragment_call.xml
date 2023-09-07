@@ -20,7 +20,9 @@
         android:textSize="43dp"
         android:lineHeight="52dp"
         android:textAlignment="center"
-        style="@style/NoUnderlineEditText"/>
+        style="@style/NoUnderlineEditText"
+        android:inputType="phone"
+        android:maxLength="13"/>
 
 
     <ImageButton

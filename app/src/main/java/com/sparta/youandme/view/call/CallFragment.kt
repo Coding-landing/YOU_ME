@@ -6,23 +6,29 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-
-import com.sparta.youandme.R
+import androidx.fragment.app.Fragment
 import com.sparta.youandme.databinding.FragmentCallBinding
 import com.sparta.youandme.model.CallingObject
+
 
 
 class CallFragment : Fragment() {
     private lateinit var binding: FragmentCallBinding
     private lateinit var editTextCallNumber: EditText
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1) {
+            editTextCallNumber.text.clear()
 
+        }
+    }
 
     private fun appendDigit(editText: EditText, digit: String) {
         val currentText = editText.text.toString()
@@ -89,6 +95,30 @@ class CallFragment : Fragment() {
             appendDigit(editTextCallNumber, "9")
             buttonBackSpace.visibility = View.VISIBLE
         }
+
+        editTextCallNumber.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+                buttonBackSpace.visibility =
+                    if (s?.isNotEmpty() == true) View.VISIBLE else View.GONE
+
+                val formattedPhoneNumber = formatPhoneNumber(s.toString())
+                if (editTextCallNumber.text.toString() != formattedPhoneNumber) {
+                    editTextCallNumber.removeTextChangedListener(this)
+                    editTextCallNumber.setText(formattedPhoneNumber)
+                    editTextCallNumber.setSelection(formattedPhoneNumber.length)
+                    editTextCallNumber.addTextChangedListener(this)
+                }
+            }
+        })
+
+
         buttonBackSpace.setOnClickListener {
             val currentText = editTextCallNumber.text.toString()
             if (currentText.isNotEmpty()) {
@@ -102,20 +132,23 @@ class CallFragment : Fragment() {
         buttonCall.setOnClickListener {
             val phoneNumber = editTextCallNumber.text.toString()
 
+
             if (phoneNumber.isNotEmpty()) {
-                if(ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED)
-                {
+                if (ActivityCompat.checkSelfPermission(
+                        requireContext(),
+                        Manifest.permission.CALL_PHONE
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
                     (ActivityCompat.requestPermissions(
                         requireActivity(),
                         arrayOf(Manifest.permission.CALL_PHONE),
                         1
                     )
                             )
-                }
-                else {
-                    val callIntent =  Intent(Intent.ACTION_CALL)
+                } else {
+                    val callIntent = Intent(Intent.ACTION_CALL)
                     callIntent.data = Uri.parse("tel:$phoneNumber")
-                    startActivity(callIntent)
+                    startActivityForResult(callIntent, 1)
                 }
             }
 
@@ -128,7 +161,7 @@ class CallFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         binding = FragmentCallBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -139,7 +172,7 @@ class CallFragment : Fragment() {
         parentFragmentManager.setFragmentResultListener(
             "callObject",
             viewLifecycleOwner
-        ){_, bundle->
+        ) { _, bundle ->
             obj = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 bundle.getParcelable("model", CallingObject::class.java)
             } else {
@@ -150,6 +183,7 @@ class CallFragment : Fragment() {
         }
 
     }
+
     companion object {
         fun newInstance() = CallFragment()
 
