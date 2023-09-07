@@ -74,13 +74,16 @@ class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemCount(): Int = _list.size
 
-    fun sortingLikedList() {
+    fun sortingLikedList(position: Int) {
+        val targetItem = _list[position]
         val sortedList =
-            _list.sortedByDescending { it.isLiked }.onEachIndexed { index, callingObject ->
-                callingObject.type =
-                    if (index % 2 == 0) ViewType.LEFT_POSITION else ViewType.RIGHT_POSITION
-            }
+            _list.sortedWith(compareByDescending<CallingObject> { it.isLiked }.thenBy { it.name })
+                .onEachIndexed { index, callingObject ->
+                    callingObject.type =
+                        if (index % 2 == 0) ViewType.LEFT_POSITION else ViewType.RIGHT_POSITION
+                }
         addItems(sortedList)
+        notifyItemMoved(position, sortedList.indexOf(targetItem))
     }
 
     private fun isLikedResources(isLiked: Boolean, checkBox: CheckBox) {
@@ -122,6 +125,7 @@ class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 setOnCheckedChangeListener { _, isChecked ->
                     model.isLiked = isChecked
                     isLikedResources(model.isLiked, this)
+                    sortingLikedList(adapterPosition)
                 }
             }
         }
@@ -151,6 +155,7 @@ class ContactListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 setOnCheckedChangeListener { _, isChecked ->
                     model.isLiked = isChecked
                     isLikedResources(model.isLiked, this)
+                    sortingLikedList(adapterPosition)
                 }
             }
         }
