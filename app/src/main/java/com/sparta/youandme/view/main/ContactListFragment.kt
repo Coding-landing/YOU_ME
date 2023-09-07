@@ -102,7 +102,7 @@ class ContactListFragment : Fragment() {
         view?.isVisible = true
         mainAdapter = ContactListAdapter().apply {
             val items =
-                CallObjectData.list.sortedWith(compareBy<CallingObject> { it.name }.thenBy { it.isLiked })
+                CallObjectData.list.sortedWith(compareByDescending<CallingObject> { it.isLiked }.thenBy { it.name })
                     .onEachIndexed { index, callingObject ->
                         callingObject.type =
                             if (index % 2 == 0) ViewType.LEFT_POSITION else ViewType.RIGHT_POSITION
@@ -139,6 +139,11 @@ class ContactListFragment : Fragment() {
         _binding = null
         view = null
         super.onDestroyView()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initRecyclerView()
     }
 
     companion object {
