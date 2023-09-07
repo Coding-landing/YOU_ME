@@ -36,23 +36,23 @@ class MyPageFragment : Fragment() {
     private fun setupClickListeners(view: View) {
         view.findViewById<ImageView>(R.id.my_message).setOnClickListener {
             openMessagingApp()
-        }
+        } // 메세지 관련
 
         view.findViewById<ImageView>(R.id.my_emailbt).setOnClickListener {
             sendEmail()
-        }
+        } // 이메일 관련
 
         view.findViewById<ImageView>(R.id.my_snsbt).setOnClickListener {
             searchOnWeb(view.findViewById<TextView>(R.id.my_sns).text.toString())
-        }
+        } // sns관련 웹서치
 
         view.findViewById<ImageView>(R.id.my_blogbt).setOnClickListener {
             searchOnWeb(view.findViewById<TextView>(R.id.my_blog_adress).text.toString())
-        }
+        } // blog관련 웹서치
 
         view.findViewById<ImageView>(R.id.my_call).setOnClickListener {
             callPhoneNumber()
-        }
+        } // 전화 관련
     }
 
     private fun openMessagingApp() {
@@ -99,7 +99,7 @@ class MyPageFragment : Fragment() {
             ActivityCompat.requestPermissions(
                 requireActivity(),
                 arrayOf(Manifest.permission.CALL_PHONE),
-                1 // REQUEST_CALL_PHONE_PERMISSION 변수 대신 직접 사용
+                1
             )
         }
     }
