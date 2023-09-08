@@ -37,7 +37,7 @@ object CallObjectData {
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
-            imgId = drawableToUri(R.drawable.bg_junsun),
+            imgId = drawableToUri(R.drawable.bg_minjong),
             name ="김민종",
             mobileNumber = "010-8947-7397",
             email ="alswhddkdl@gmail.com",
@@ -49,7 +49,7 @@ object CallObjectData {
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
-            imgId = drawableToUri(R.drawable.bg_junsun),
+            imgId = drawableToUri(R.drawable.bg_seungchul),
             name ="신승철",
             mobileNumber = "010-9542-7359",
             email ="blueskyroad@naver.com",
@@ -61,7 +61,7 @@ object CallObjectData {
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
-            imgId = drawableToUri(R.drawable.bg_junsun),
+            imgId = drawableToUri(R.drawable.bg_sunho),
             name ="정선호",
             mobileNumber = "010-9027-4209",
             email ="sunho512@gmail.com",
@@ -73,7 +73,7 @@ object CallObjectData {
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
-            imgId = drawableToUri(R.drawable.bg_junsun),
+            imgId = drawableToUri(R.drawable.bg_talent_1),
             name ="권은비",
             mobileNumber = "010-1234-1212",
             email ="silver_rain@gmail.com",
@@ -84,7 +84,7 @@ object CallObjectData {
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
-            imgId = drawableToUri(R.drawable.bg_junsun),
+            imgId = drawableToUri(R.drawable.bg_talent_3),
             name ="황민현",
             mobileNumber = "010-8894-4988",
             email ="sisun@gmail.com",
@@ -96,7 +96,7 @@ object CallObjectData {
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
-            imgId = drawableToUri(R.drawable.bg_junsun),
+            imgId = drawableToUri(R.drawable.bg_talent_4),
             name ="전원우",
             mobileNumber = "010-5889-4885",
             email ="ddifj@gmail.com",
@@ -107,7 +107,7 @@ object CallObjectData {
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
-            imgId = drawableToUri(R.drawable.bg_junsun),
+            imgId = drawableToUri(R.drawable.bg_talent_5),
             name ="강해린",
             mobileNumber = "010-2332-3443",
             email ="haerin@gmail.com",
