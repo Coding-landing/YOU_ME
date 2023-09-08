@@ -107,16 +107,16 @@ class ContactListFragment : Fragment() {
         view?.isVisible = true
         fab?.show()
         mainAdapter = ContactListAdapter(requireActivity()).apply {
+            if (manager is GridLayoutManager) {
+                addItems(CallObjectData.changeGridType())
+                return@apply
+            }
             val items =
                 CallObjectData.list.sortedWith(compareByDescending<CallingObject> { it.isLiked }.thenBy { it.name })
                     .onEachIndexed { index, callingObject ->
                         callingObject.type =
                             if (index % 2 == 0) ViewType.LEFT_POSITION else ViewType.RIGHT_POSITION
                     }
-            if (manager is GridLayoutManager) {
-                addItems(gridList)
-                return@apply
-            }
             addItems(items)
         }
         mainRecyclerView.run {
@@ -163,7 +163,11 @@ class ContactListFragment : Fragment() {
             if (obj == null) {
                 return@setFragmentResultListener
             }
+            // 그리드 배열 원래 배열 둘다 넣어주기
             CallObjectData.addItem(obj!!)
+            gridList.add(obj!!.apply {
+                type = ViewType.GRID_POSITION
+            })
             initRecyclerView()
         }
         initRecyclerView()
