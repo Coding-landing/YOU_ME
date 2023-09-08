@@ -35,7 +35,6 @@ class ContactListFragment : Fragment() {
     private lateinit var mainActivity: MainActivity
     private var view: TabLayout? = null
     private var fab: FloatingActionButton? = null
-    private lateinit var callBundle: Bundle
     private val menuClickListener by lazy {
         Toolbar.OnMenuItemClickListener { item ->
             when (item?.itemId) {
@@ -105,7 +104,7 @@ class ContactListFragment : Fragment() {
     private fun initRecyclerView() = with(binding) {
         view?.isVisible = true
         fab?.show()
-        mainAdapter = ContactListAdapter().apply {
+        mainAdapter = ContactListAdapter(requireActivity()).apply {
             val items =
                 CallObjectData.list.sortedWith(compareByDescending<CallingObject> { it.isLiked }.thenBy { it.name })
                     .onEachIndexed { index, callingObject ->
