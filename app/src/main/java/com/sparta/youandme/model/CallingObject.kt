@@ -1,14 +1,13 @@
 package com.sparta.youandme.model
 
+import android.net.Uri
 import android.os.Parcelable
-import android.telecom.Call
-import androidx.annotation.DrawableRes
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class CallingObject(
     val id: String,
-    @DrawableRes val imgId: Int,
+    val imgId: Uri?,
     val name: String,
     val mobileNumber: String,
     val email: String,

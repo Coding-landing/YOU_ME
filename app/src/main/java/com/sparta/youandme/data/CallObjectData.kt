@@ -1,5 +1,8 @@
 package com.sparta.youandme.data
 
+import android.graphics.drawable.Drawable
+import android.net.Uri
+import androidx.annotation.DrawableRes
 import com.sparta.youandme.R
 import com.sparta.youandme.model.CallingObject
 import com.sparta.youandme.model.ViewType
@@ -11,7 +14,7 @@ object CallObjectData {
     private val _list = arrayListOf(
         CallingObject(
             id = UUID.randomUUID().toString(),
-            imgId = R.drawable.bg_hyerin,
+            imgId = drawableToUri(R.drawable.bg_hyerin),
             name = "박혜린",
             mobileNumber = "010-5684-8994",
             email = "thwn1012@gmail.com",
@@ -23,7 +26,7 @@ object CallObjectData {
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
-            imgId = R.drawable.bg_junsun,
+            imgId = drawableToUri(R.drawable.bg_junsun),
             name ="소준선",
             mobileNumber = "010-6321-7998",
             email ="sojh8908@gmail.com",
@@ -34,7 +37,7 @@ object CallObjectData {
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
-            imgId = R.drawable.bg_minjong,
+            imgId = drawableToUri(R.drawable.bg_junsun),
             name ="김민종",
             mobileNumber = "010-8947-7397",
             email ="alswhddkdl@gmail.com",
@@ -46,7 +49,7 @@ object CallObjectData {
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
-            imgId = R.drawable.bg_seungchul,
+            imgId = drawableToUri(R.drawable.bg_junsun),
             name ="신승철",
             mobileNumber = "010-9542-7359",
             email ="blueskyroad@naver.com",
@@ -58,7 +61,7 @@ object CallObjectData {
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
-            imgId = R.drawable.bg_sunho,
+            imgId = drawableToUri(R.drawable.bg_junsun),
             name ="정선호",
             mobileNumber = "010-9027-4209",
             email ="sunho512@gmail.com",
@@ -70,7 +73,7 @@ object CallObjectData {
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
-            imgId = R.drawable.bg_talent_1,
+            imgId = drawableToUri(R.drawable.bg_junsun),
             name ="권은비",
             mobileNumber = "010-1234-1212",
             email ="silver_rain@gmail.com",
@@ -81,7 +84,7 @@ object CallObjectData {
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
-            imgId = R.drawable.bg_talent_3,
+            imgId = drawableToUri(R.drawable.bg_junsun),
             name ="황민현",
             mobileNumber = "010-8894-4988",
             email ="sisun@gmail.com",
@@ -93,7 +96,7 @@ object CallObjectData {
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
-            imgId =R.drawable.bg_talent_4,
+            imgId = drawableToUri(R.drawable.bg_junsun),
             name ="전원우",
             mobileNumber = "010-5889-4885",
             email ="ddifj@gmail.com",
@@ -104,7 +107,7 @@ object CallObjectData {
         ),
         CallingObject(
             id = UUID.randomUUID().toString(),
-            imgId = R.drawable.bg_talent_5,
+            imgId = drawableToUri(R.drawable.bg_junsun),
             name ="강해린",
             mobileNumber = "010-2332-3443",
             email ="haerin@gmail.com",
@@ -118,4 +121,8 @@ object CallObjectData {
         it.type = ViewType.GRID_POSITION
     }
     fun addItem(model: CallingObject) = _list.add(model)
+
+    private fun drawableToUri(@DrawableRes id: Int)
+        = Uri.parse("android.resource://" + R::class.java.`package`?.name + "/" + id)
+
 }
