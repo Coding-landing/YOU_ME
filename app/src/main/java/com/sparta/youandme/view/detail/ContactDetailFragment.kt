@@ -19,7 +19,7 @@ import com.sparta.youandme.model.CallingObject
 class ContactDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentContactDetailBinding
-    private lateinit var data: CallingObject // CallingObject 타입으로 변경
+    private lateinit var data: CallingObject
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -39,6 +39,7 @@ class ContactDetailFragment : Fragment() {
         binding.detailEmail.text = data.email
         binding.detailMbti.text = data.mbti
         binding.detailNickName.text = data.nickName
+        binding.detailPicture.setImageResource(data.imgId)
     }
 
     override fun onCreateView(
