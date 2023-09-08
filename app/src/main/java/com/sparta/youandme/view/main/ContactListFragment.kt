@@ -35,6 +35,7 @@ class ContactListFragment : Fragment() {
     private lateinit var mainActivity: MainActivity
     private var view: TabLayout? = null
     private var fab: FloatingActionButton? = null
+    private lateinit var callBundle: Bundle
     private val menuClickListener by lazy {
         Toolbar.OnMenuItemClickListener { item ->
             when (item?.itemId) {
@@ -149,13 +150,13 @@ class ContactListFragment : Fragment() {
         super.onResume()
         var obj: CallingObject? = null
         parentFragmentManager.setFragmentResultListener(
-            "callObject",
+            "Bundle",
             viewLifecycleOwner
         ){ _, bundle->
             obj = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                bundle.getParcelable("model", CallingObject::class.java)
+                bundle.getParcelable("Ncontact", CallingObject::class.java)
             } else {
-                bundle.getParcelable("model")
+                bundle.getParcelable("Ncontact")
             }
             if (obj == null) {
                 return@setFragmentResultListener
@@ -163,6 +164,7 @@ class ContactListFragment : Fragment() {
             CallObjectData.addItem(obj!!)
             initRecyclerView()
         }
+        initRecyclerView()
     }
 
     companion object {
