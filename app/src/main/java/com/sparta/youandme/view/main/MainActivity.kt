@@ -123,6 +123,7 @@ class MainActivity : AppCompatActivity() {
         fabAddTodo.setOnClickListener {
             changeFragment(R.id.add_contact_fragment, AddContactDialogFragment.newInstance())
             fabAddTodo.hide()
+            tabLayout.isVisible = false
         }
     }
 
