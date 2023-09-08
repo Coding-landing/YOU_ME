@@ -30,6 +30,7 @@ class AlarmReceiver : BroadcastReceiver() {
         // notification manager
         manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val bundle = intent.getBundleExtra("bundle")
+
         val model = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             bundle?.getParcelable("obj", CallingObject::class.java)
         } else {
@@ -37,13 +38,15 @@ class AlarmReceiver : BroadcastReceiver() {
         }
         // 알람 클릭시 넘어갈 인텐트 준비
         val alarmIntent = Intent(context, MainActivity::class.java)
+
         val pendingIntent =
             PendingIntent.getActivity(context, 101, alarmIntent, PendingIntent.FLAG_IMMUTABLE)
+
         val builder = createNotification(context, model, pendingIntent)
-        // noti 등록
+
         // 각자의 noti에도 고유값필요
         val id = list.indexOf(model?.id)
-        println(model)
+
         if (ActivityCompat.checkSelfPermission(
                 context,
                 Manifest.permission.POST_NOTIFICATIONS

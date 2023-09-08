@@ -45,36 +45,32 @@ class ContactListAdapter(private val context: Context) : RecyclerView.Adapter<Re
         TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
             val idList = CallObjectData.list.map { it.id }
             val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-            val now = Calendar.getInstance(TimeZone.getTimeZone("Asia/Seoul"), Locale.KOREA)
-            val alarm =
-                Calendar.getInstance(TimeZone.getTimeZone("Asia/Seoul"), Locale.KOREA).apply {
-                    set(Calendar.HOUR_OF_DAY, hourOfDay)
-                    set(Calendar.MINUTE, minute)
-                }
+            val (timeNow, alarmTime) = getCurrentTimeAndAlarmTime(hourOfDay, minute)
+            val hourDifference = timeNow.get(Calendar.HOUR_OF_DAY) - hourOfDay
+            val minuteDifference = minute - timeNow.get(Calendar.MINUTE)
+            // 각자의 고유 코드 필요
+            val code = idList.indexOf(obj.id)
+
             val bundle = Bundle().apply {
                 putParcelable("obj", obj)
             }
+
             val receiverIntent = Intent(context, AlarmReceiver::class.java).apply {
                 putExtra("bundle", bundle)
             }
-            // 각자의 고유 코드 필요
-            val code = idList.indexOf(obj.id)
             val pendingIntent = PendingIntent.getBroadcast(
                 context,
                 code,
                 receiverIntent,
                 PendingIntent.FLAG_MUTABLE
             )
-            val hourDifference = now.get(Calendar.HOUR_OF_DAY) - hourOfDay
-            val minuteDifference = minute - now.get(Calendar.MINUTE)
-            println(receiverIntent)
-            println(pendingIntent)
+
             context.toast(
                 "${obj.name}님께 연락 할 수 있도록 ${hourDifference * 60 + minuteDifference}" +
                         "분 이후 알림"
             )
-            // alarm.timeInMillis --> 진짜 알람 // 일단은 5초 있다가
-            alarmManager.set(AlarmManager.RTC_WAKEUP, now.timeInMillis + 5, pendingIntent)
+            // alarmTime.timeInMillis --> 진짜 알람 // 일단은 5초 있다가
+            alarmManager.set(AlarmManager.RTC_WAKEUP, timeNow.timeInMillis + 5, pendingIntent)
         }
     fun addItems(items: List<CallingObject>) {
         _list.clear()
@@ -85,7 +81,6 @@ class ContactListAdapter(private val context: Context) : RecyclerView.Adapter<Re
     fun setOnClickListener(listener: ItemClickListener) {
         itemClickListener = listener
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -177,6 +172,16 @@ class ContactListAdapter(private val context: Context) : RecyclerView.Adapter<Re
             true -> checkBox.setBackgroundResource(R.drawable.icon_heart_on)
             false -> checkBox.setBackgroundResource(R.drawable.icon_heart)
         }
+    }
+
+    private fun getCurrentTimeAndAlarmTime(hourOfDay: Int, minute: Int): Array<Calendar> {
+        val now = Calendar.getInstance(TimeZone.getTimeZone("Asia/Seoul"), Locale.KOREA)
+        val alarm =
+            Calendar.getInstance(TimeZone.getTimeZone("Asia/Seoul"), Locale.KOREA).apply {
+                set(Calendar.HOUR_OF_DAY, hourOfDay)
+                set(Calendar.MINUTE, minute)
+            }
+        return arrayOf(now, alarm)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
