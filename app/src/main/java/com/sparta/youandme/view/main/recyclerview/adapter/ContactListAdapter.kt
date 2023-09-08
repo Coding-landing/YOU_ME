@@ -209,8 +209,11 @@ class ContactListAdapter(private val context: Context) : RecyclerView.Adapter<Re
 
         @RequiresApi(Build.VERSION_CODES.O)
         fun bind(model: CallingObject) = with(binding) {
-            peopleImageView.setImageResource(model.imgId)
-//            peopleImageView.setImageURI(model.imgId)
+            if(model.imgId == null){
+                peopleImageView.setImageResource(R.drawable.icon_user_profile)
+            } else {
+                peopleImageView.setImageURI(model.imgId)
+            }
             nameTextView.text = model.name
             phoneNumberTextView.text = model.mobileNumber
             model.nickName.run {
@@ -244,8 +247,11 @@ class ContactListAdapter(private val context: Context) : RecyclerView.Adapter<Re
 
         @RequiresApi(Build.VERSION_CODES.O)
         fun bind(model: CallingObject) = with(binding) {
-            peopleImageView.setImageResource(model.imgId)
-//            peopleImageView.setImageURI(model.imgId)
+            if(model.imgId == null){
+                peopleImageView.setImageResource(R.drawable.icon_user_profile)
+            } else {
+                peopleImageView.setImageURI(model.imgId)
+            }
             nameTextView.text = model.name
             phoneNumberTextView.text = model.mobileNumber
             model.nickName.run {
@@ -279,7 +285,11 @@ class ContactListAdapter(private val context: Context) : RecyclerView.Adapter<Re
         }
 
         fun bind(model: CallingObject) = with(binding) {
-            gridImageView.setImageResource(model.imgId)
+            if(model.imgId == null){
+                gridImageView.setImageResource(R.drawable.icon_user_profile)
+            } else {
+                gridImageView.setImageURI(model.imgId)
+            }
             gridTextView.text = model.name
         }
     }
