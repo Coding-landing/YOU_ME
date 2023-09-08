@@ -65,6 +65,11 @@ class ContactListAdapter(private val context: Context) : RecyclerView.Adapter<Re
                 PendingIntent.FLAG_MUTABLE
             )
 
+            if(timeNow.timeInMillis >= alarmTime.timeInMillis) {
+                context.toast("설정 시간은 현재 시간 이후로 설정해주세요.")
+                return@OnTimeSetListener
+            }
+
             context.toast(
                 "${obj.name}님께 연락 할 수 있도록 ${hourDifference * 60 + minuteDifference}" +
                         "분 이후 알림"
@@ -205,12 +210,13 @@ class ContactListAdapter(private val context: Context) : RecyclerView.Adapter<Re
         @RequiresApi(Build.VERSION_CODES.O)
         fun bind(model: CallingObject) = with(binding) {
             peopleImageView.setImageResource(model.imgId)
+//            peopleImageView.setImageURI(model.imgId)
             nameTextView.text = model.name
             phoneNumberTextView.text = model.mobileNumber
             model.nickName.run {
                 when (isNullOrEmpty()) {
                     true -> nameNicknameView.text = ""
-                    false -> "(${model.nickName})".also { nameNicknameView.text = it }
+                    false -> " (${model.nickName})".also { nameNicknameView.text = it }
                 }
             }
             likedCheckBox.run {
@@ -239,12 +245,13 @@ class ContactListAdapter(private val context: Context) : RecyclerView.Adapter<Re
         @RequiresApi(Build.VERSION_CODES.O)
         fun bind(model: CallingObject) = with(binding) {
             peopleImageView.setImageResource(model.imgId)
+//            peopleImageView.setImageURI(model.imgId)
             nameTextView.text = model.name
             phoneNumberTextView.text = model.mobileNumber
             model.nickName.run {
                 when (isNullOrEmpty()) {
                     true -> nameNicknameView.text = ""
-                    false -> "(${model.nickName})".also { nameNicknameView.text = it }
+                    false -> " (${model.nickName})".also { nameNicknameView.text = it }
                 }
             }
 
