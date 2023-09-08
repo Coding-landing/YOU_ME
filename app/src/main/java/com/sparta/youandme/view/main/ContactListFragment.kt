@@ -97,6 +97,8 @@ class ContactListFragment : Fragment() {
                         arguments = bundle
                     }
                 )
+                fab?.hide()
+                view?.bringToFront()
             }
         })
     }
@@ -148,6 +150,7 @@ class ContactListFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         var obj: CallingObject? = null
+        fab?.show()
         parentFragmentManager.setFragmentResultListener(
             "Bundle",
             viewLifecycleOwner
