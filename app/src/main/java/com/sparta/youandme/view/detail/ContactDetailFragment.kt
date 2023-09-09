@@ -1,5 +1,6 @@
 package com.sparta.youandme.view.detail
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -7,6 +8,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.core.view.isVisible
 import androidx.viewpager2.widget.ViewPager2
 import com.sparta.youandme.R
 import com.sparta.youandme.databinding.FragmentContactDetailBinding
@@ -17,6 +20,30 @@ class ContactDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentContactDetailBinding
     private var data: CallingObject? = null
+    private lateinit var callback: OnBackPressedCallback
+    private lateinit var activity: ViewPager2
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        activity =
+            (requireActivity() as MainActivity).findViewById<ViewPager2>(R.id.view_pager)
+        callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                this@ContactDetailFragment.onDestroy()
+                this@ContactDetailFragment.onDetach()
+                parentFragmentManager.beginTransaction().remove(this@ContactDetailFragment).commit()
+                activity.isVisible = true
+                activity.setCurrentItem(0, false)
+
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        callback.remove()
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -34,8 +61,7 @@ class ContactDetailFragment : Fragment() {
 
         binding.detailCallBtn.setOnClickListener {
 
-            val activity =
-                (requireActivity() as MainActivity).findViewById<ViewPager2>(R.id.view_pager)
+
             val bundle = Bundle().apply {
                 putParcelable("model", data)
             }
@@ -46,13 +72,14 @@ class ContactDetailFragment : Fragment() {
 
         }
 
+
         binding.detailMyName.text = data?.name
         binding.detailCallNum.text = data?.mobileNumber
         binding.detailSnsAddress.text = data?.snsAddress
         binding.detailEmail.text = data?.email
         binding.detailMbti.text = data?.mbti
         binding.detailNickName.text = data?.nickName
-        binding.detailPicture.setImageURI(data?.imgId)
+//        binding.detailPicture.setImageURI(data?.imgId)
     }
 
     override fun onCreateView(
