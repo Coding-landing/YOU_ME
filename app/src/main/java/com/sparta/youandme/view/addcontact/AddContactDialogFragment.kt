@@ -2,6 +2,8 @@ package com.sparta.youandme.view.addcontact
 
 import android.Manifest
 import android.app.Activity.RESULT_OK
+import android.content.Context
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
@@ -16,7 +18,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
@@ -39,12 +43,14 @@ class AddContactDialogFragment : Fragment() {
     private lateinit var editblog: EditText
     private lateinit var editmbit: EditText
     private lateinit var editnickname: EditText
-    private  var uri1 : Uri? =null
-
+    private var uri1: Uri? = null
+    private  lateinit  var viewPager : ViewPager2
+    private  lateinit var  activity: MainActivity
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAddContactDialogBinding.bind(view)
+        activity = requireActivity() as MainActivity
         val context = requireContext()
         val btn = binding.diaBtnWhite
         editelnum = binding.diaEditTelNum
@@ -74,7 +80,7 @@ class AddContactDialogFragment : Fragment() {
                     mbti = editmbit.text.toString().trim(),
                     nickName = editnickname.text.toString().trim(),
                     blogAddress = editblog.text.toString().trim(),
-                    imgId = R.drawable.icon_user_profile,
+                    imgId = uri1,
                     type = -1
                 )
                 val bundle = Bundle().apply {
@@ -102,15 +108,11 @@ class AddContactDialogFragment : Fragment() {
                 cons2.visibility = View.GONE
             }
         }
-        val diaLayout = binding.diaLayout
-        diaLayout.setOnClickListener {
-            // 클릭 시 현재 프래그먼트를 종료하고 메인 화면으로 이동
-            parentFragmentManager.beginTransaction().remove(this).commit()
-            val activity = requireActivity() as MainActivity
-            val viewPager = activity.findViewById<ViewPager2>(R.id.view_pager)
-            viewPager.isVisible = true
-            viewPager.setCurrentItem(0, false)
+        val back = binding.diaIconBack
+        back.setOnClickListener {
+                setFragment(this@AddContactDialogFragment, Bundle())
         }
+
         val img = binding.diaImg
         img.setOnClickListener(View.OnClickListener {
             if (ActivityCompat.checkSelfPermission(
@@ -126,47 +128,46 @@ class AddContactDialogFragment : Fragment() {
                     1
                 )
                         )
-            }
-            else {
+            } else {
                 selectGallery()
             }
-        }
+        })
+        val manager = activity.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        manager.hideSoftInputFromWindow(
+            activity.currentFocus?.windowToken,
+            InputMethodManager.HIDE_NOT_ALWAYS
         )
-
     }
-    private fun selectGallery(){
+
+    private fun selectGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         imageResult.launch(intent)
     }
+
     private val imageResult = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
-    ){
-            result ->
-        if (result.resultCode == RESULT_OK){
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
             val imageUri = result.data?.data
-                println(imageUri)
-            var uri =  getRealPathFromURI(imageUri!!)
+            var uri = getRealPathFromURI(imageUri!!)
             uri1 = Uri.parse(uri)
-            println(uri)
-//            val input = (requireActivity() as MainActivity).contentResolver.openInputStream(imageUri)
-//            var draw = Drawable.createFromStream(input, "123.jpg")
             binding.diaImg.setImageURI(Uri.parse(uri))
-            }
         }
+    }
 
 
     private fun setFragment(frag: Fragment, bundle: Bundle) {
-        val activity = (requireActivity() as MainActivity)
-        val viewPager = activity.findViewById<ViewPager2>(R.id.view_pager)
         parentFragmentManager.beginTransaction().remove(this).commit()
         frag.onDestroy()
         frag.onDetach()
+        viewPager = activity.findViewById(R.id.view_pager)
         viewPager.isVisible = true
         viewPager.setCurrentItem(0, false)
-        parentFragmentManager.setFragmentResult("Bundle", bundle)
+        if (bundle.isEmpty.not()) {
+            parentFragmentManager.setFragmentResult("Bundle", bundle)
+        }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -239,33 +240,33 @@ class AddContactDialogFragment : Fragment() {
             }
         }
     }
-    fun getRealPathFromURI(uri: Uri):String{
+
+    fun getRealPathFromURI(uri: Uri): String {
         val buildName = Build.MANUFACTURER
-        if(buildName.equals("Xiami")){
+        if (buildName.equals("Xiami")) {
             return uri.path!!
         }
         var columnIndex = 0
         val proj = arrayOf(MediaStore.Images.Media.DATA)
-        val cursor = (requireActivity() as MainActivity).contentResolver.query(uri,proj,null,null,null)
-        if (cursor!!.moveToFirst()){
+        val cursor =
+            (activity).contentResolver.query(
+                uri,
+                proj,
+                null,
+                null,
+                null
+            )
+        if (cursor!!.moveToFirst()) {
             columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
         }
-        val  result = cursor.getString(columnIndex)
+        val result = cursor.getString(columnIndex)
         cursor.close()
-        return result}
+        return result
+    }
 
 
     companion object {
         fun newInstance() = AddContactDialogFragment()
-        const val REVIEW_MIN_LENGTH = 10
-        const val REQ_GALLERY = 1
-
-        const val  PRAM_KEY_IMAGE ="image"
-        const val  PRAM_KEY_PRODUCT_ID = "product_id"
-        const val  PRAM_KEY_REVIEW = "review_content"
-        const val  PRAM_KEY_RATING = "rating" }
-
-
-
     }
+}
 
