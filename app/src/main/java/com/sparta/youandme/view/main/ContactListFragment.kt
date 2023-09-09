@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
@@ -78,7 +79,7 @@ class ContactListFragment : Fragment() {
 
     private fun initViews() = with(binding) {
         toolBar.run {
-            title = getString(R.string.app_name)
+            logo = AppCompatResources.getDrawable(requireActivity(), R.drawable.icon_logo)
             inflateMenu(R.menu.main_menu)
             setOnMenuItemClickListener(menuClickListener)
         }
