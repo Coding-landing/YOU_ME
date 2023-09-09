@@ -63,6 +63,7 @@ class MainActivity : AppCompatActivity() {
     private fun initTabs() = with(binding) {
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
+                supportFragmentManager.popBackStack()
                 when (tab?.position) {
                     0 -> {
                         addContactFragment.isVisible = false
@@ -85,6 +86,7 @@ class MainActivity : AppCompatActivity() {
             }
             override fun onTabUnselected(tab: TabLayout.Tab?) = Unit
             override fun onTabReselected(tab: TabLayout.Tab?) {
+                supportFragmentManager.popBackStack()
                 when (tab?.position) {
                     0 -> {
                         addContactFragment.isVisible = false
@@ -130,8 +132,9 @@ class MainActivity : AppCompatActivity() {
     fun changeFragment(@IdRes fragmentId: Int, fragment: Fragment) = with(binding) {
         viewPager.isVisible = false
         addContactFragment.isVisible = true
+        supportFragmentManager.popBackStack()
         supportFragmentManager.beginTransaction()
-            .add(fragmentId, fragment)
+            .replace(fragmentId, fragment)
             .addToBackStack(null)
             .commit()
     }

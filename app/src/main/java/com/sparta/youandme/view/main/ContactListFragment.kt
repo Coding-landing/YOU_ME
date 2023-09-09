@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
@@ -78,7 +79,7 @@ class ContactListFragment : Fragment() {
 
     private fun initViews() = with(binding) {
         toolBar.run {
-            title = getString(R.string.app_name)
+            logo = AppCompatResources.getDrawable(requireActivity(), R.drawable.icon_logo)
             inflateMenu(R.menu.main_menu)
             setOnMenuItemClickListener(menuClickListener)
         }
@@ -97,6 +98,8 @@ class ContactListFragment : Fragment() {
                         arguments = bundle
                     }
                 )
+                fab?.hide()
+                view?.bringToFront()
             }
         })
     }
@@ -105,16 +108,16 @@ class ContactListFragment : Fragment() {
         view?.isVisible = true
         fab?.show()
         mainAdapter = ContactListAdapter(requireActivity()).apply {
+            if (manager is GridLayoutManager) {
+                addItems(CallObjectData.changeGridType())
+                return@apply
+            }
             val items =
                 CallObjectData.list.sortedWith(compareByDescending<CallingObject> { it.isLiked }.thenBy { it.name })
                     .onEachIndexed { index, callingObject ->
                         callingObject.type =
                             if (index % 2 == 0) ViewType.LEFT_POSITION else ViewType.RIGHT_POSITION
                     }
-            if (manager is GridLayoutManager) {
-                addItems(gridList)
-                return@apply
-            }
             addItems(items)
         }
         mainRecyclerView.run {
@@ -148,6 +151,7 @@ class ContactListFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         var obj: CallingObject? = null
+        fab?.show()
         parentFragmentManager.setFragmentResultListener(
             "Bundle",
             viewLifecycleOwner
@@ -160,7 +164,11 @@ class ContactListFragment : Fragment() {
             if (obj == null) {
                 return@setFragmentResultListener
             }
+            // 그리드 배열 원래 배열 둘다 넣어주기
             CallObjectData.addItem(obj!!)
+            gridList.add(obj!!.apply {
+                type = ViewType.GRID_POSITION
+            })
             initRecyclerView()
         }
         initRecyclerView()
