@@ -13,6 +13,7 @@ import androidx.core.view.isVisible
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.sparta.youandme.R
+import com.sparta.youandme.data.CallObjectData
 import com.sparta.youandme.databinding.FragmentContactDetailBinding
 import com.sparta.youandme.model.CallingObject
 import com.sparta.youandme.view.main.MainActivity
@@ -46,6 +47,7 @@ class ContactDetailFragment : Fragment() {
         super.onDetach()
         callback.remove()
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -76,7 +78,9 @@ class ContactDetailFragment : Fragment() {
         binding.detailEmail.text = data?.email
         binding.detailMbti.text = data?.mbti
         binding.detailNickName.text = data?.nickName
-        binding.detailPicture.setImageURI(data?.imgId)
+        binding.detailPicture.setImageURI(
+            data?.imgId ?: CallObjectData.drawableToUri(R.drawable.icon_user_profile)
+        )
     }
 
     override fun onCreateView(
