@@ -128,7 +128,7 @@ object CallObjectData {
 
     fun addItem(model: CallingObject) = _list.add(model)
 
-    private fun drawableToUri(@DrawableRes id: Int) =
+    fun drawableToUri(@DrawableRes id: Int) =
         Uri.parse("android.resource://" + R::class.java.`package`?.name + "/" + id)
 
 }

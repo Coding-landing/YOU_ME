@@ -46,7 +46,7 @@ class ContactListAdapter(private val context: Context) : RecyclerView.Adapter<Re
             val idList = CallObjectData.list.map { it.id }
             val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
             val (timeNow, alarmTime) = getCurrentTimeAndAlarmTime(hourOfDay, minute)
-            val hourDifference = timeNow.get(Calendar.HOUR_OF_DAY) - hourOfDay
+            val hourDifference = hourOfDay - timeNow.get(Calendar.HOUR_OF_DAY)
             val minuteDifference = minute - timeNow.get(Calendar.MINUTE)
             // 각자의 고유 코드 필요
             val code = idList.indexOf(obj.id)

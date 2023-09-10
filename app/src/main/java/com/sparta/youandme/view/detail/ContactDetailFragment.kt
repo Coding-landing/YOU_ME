@@ -11,7 +11,9 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.sparta.youandme.R
+import com.sparta.youandme.data.CallObjectData
 import com.sparta.youandme.databinding.FragmentContactDetailBinding
 import com.sparta.youandme.model.CallingObject
 import com.sparta.youandme.view.main.MainActivity
@@ -21,20 +23,21 @@ class ContactDetailFragment : Fragment() {
     private lateinit var binding: FragmentContactDetailBinding
     private var data: CallingObject? = null
     private lateinit var callback: OnBackPressedCallback
-    private lateinit var activity: ViewPager2
-
+    private lateinit var viewPager: ViewPager2
+    private lateinit var fab: FloatingActionButton
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        activity =
-            (requireActivity() as MainActivity).findViewById<ViewPager2>(R.id.view_pager)
+        viewPager =
+            (requireActivity() as MainActivity).findViewById(R.id.view_pager)
+        fab = (requireActivity() as MainActivity).findViewById(R.id.fab_add_todo)
         callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 this@ContactDetailFragment.onDestroy()
                 this@ContactDetailFragment.onDetach()
                 parentFragmentManager.beginTransaction().remove(this@ContactDetailFragment).commit()
-                activity.isVisible = true
-                activity.setCurrentItem(0, false)
-
+                fab.show()
+                viewPager.isVisible = true
+                viewPager.setCurrentItem(0, false)
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)
@@ -44,11 +47,11 @@ class ContactDetailFragment : Fragment() {
         super.onDetach()
         callback.remove()
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         data = arguments?.getParcelable<CallingObject>("model")
-
 
         binding = FragmentContactDetailBinding.bind(view)
 
@@ -60,18 +63,14 @@ class ContactDetailFragment : Fragment() {
         }
 
         binding.detailCallBtn.setOnClickListener {
-
-
             val bundle = Bundle().apply {
                 putParcelable("model", data)
             }
             this@ContactDetailFragment.onDestroy()
             this@ContactDetailFragment.onDetach()
-            activity.setCurrentItem(2, true)
+            viewPager.setCurrentItem(2, true)
             parentFragmentManager.setFragmentResult("callObject", bundle)
-
         }
-
 
         binding.detailMyName.text = data?.name
         binding.detailCallNum.text = data?.mobileNumber
@@ -79,7 +78,9 @@ class ContactDetailFragment : Fragment() {
         binding.detailEmail.text = data?.email
         binding.detailMbti.text = data?.mbti
         binding.detailNickName.text = data?.nickName
-//        binding.detailPicture.setImageURI(data?.imgId)
+        binding.detailPicture.setImageURI(
+            data?.imgId ?: CallObjectData.drawableToUri(R.drawable.icon_user_profile)
+        )
     }
 
     override fun onCreateView(

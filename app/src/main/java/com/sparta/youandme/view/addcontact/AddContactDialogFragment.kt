@@ -26,10 +26,13 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.tabs.TabLayout
 import com.sparta.youandme.R
 import com.sparta.youandme.databinding.FragmentAddContactDialogBinding
 import com.sparta.youandme.extension.ContextExtension.toast
 import com.sparta.youandme.model.CallingObject
+import com.sparta.youandme.view.main.ContactListFragment
 import com.sparta.youandme.view.main.MainActivity
 import java.util.UUID
 
@@ -44,13 +47,19 @@ class AddContactDialogFragment : Fragment() {
     private lateinit var editmbit: EditText
     private lateinit var editnickname: EditText
     private var uri1: Uri? = null
-    private  lateinit  var viewPager : ViewPager2
-    private  lateinit var  activity: MainActivity
+    private lateinit var viewPager: ViewPager2
+    private lateinit var fab: FloatingActionButton
+    private lateinit var tabLayout: TabLayout
+    private lateinit var activity: MainActivity
+    private lateinit var callback: OnBackPressedCallback
+
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAddContactDialogBinding.bind(view)
         activity = requireActivity() as MainActivity
+        fab = activity.findViewById(R.id.fab_add_todo)
+        tabLayout = activity.findViewById(R.id.tab_layout)
         val context = requireContext()
         val btn = binding.diaBtnWhite
         editelnum = binding.diaEditTelNum
@@ -110,7 +119,7 @@ class AddContactDialogFragment : Fragment() {
         }
         val back = binding.diaIconBack
         back.setOnClickListener {
-                setFragment(this@AddContactDialogFragment, Bundle())
+            setFragment(this@AddContactDialogFragment, Bundle())
         }
 
         val img = binding.diaImg
@@ -132,11 +141,6 @@ class AddContactDialogFragment : Fragment() {
                 selectGallery()
             }
         })
-        val manager = activity.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        manager.hideSoftInputFromWindow(
-            activity.currentFocus?.windowToken,
-            InputMethodManager.HIDE_NOT_ALWAYS
-        )
     }
 
     private fun selectGallery() {
@@ -158,16 +162,24 @@ class AddContactDialogFragment : Fragment() {
 
 
     private fun setFragment(frag: Fragment, bundle: Bundle) {
+        val manager = activity.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        manager.hideSoftInputFromWindow(
+            activity.currentFocus?.windowToken,
+            InputMethodManager.HIDE_NOT_ALWAYS
+        )
+        viewPager = activity.findViewById(R.id.view_pager)
         parentFragmentManager.beginTransaction().remove(this).commit()
         frag.onDestroy()
         frag.onDetach()
-        viewPager = activity.findViewById(R.id.view_pager)
         viewPager.isVisible = true
+        tabLayout.isVisible = true
+        fab.show()
         viewPager.setCurrentItem(0, false)
         if (bundle.isEmpty.not()) {
             parentFragmentManager.setFragmentResult("Bundle", bundle)
         }
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -241,7 +253,7 @@ class AddContactDialogFragment : Fragment() {
         }
     }
 
-    fun getRealPathFromURI(uri: Uri): String {
+    private fun getRealPathFromURI(uri: Uri): String {
         val buildName = Build.MANUFACTURER
         if (buildName.equals("Xiami")) {
             return uri.path!!
@@ -264,7 +276,26 @@ class AddContactDialogFragment : Fragment() {
         return result
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                setFragment(this@AddContactDialogFragment, Bundle())
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
 
+    override fun onDetach() {
+        super.onDetach()
+        callback.remove()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        fab.hide()
+        tabLayout.isVisible = false
+    }
     companion object {
         fun newInstance() = AddContactDialogFragment()
     }

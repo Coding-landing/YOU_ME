@@ -38,9 +38,7 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="25dp"
                 android:layout_marginBottom="15dp"
-                android:background="@drawable/dialog_back_mint"
                 android:clipToOutline="true"
-                android:foreground="@drawable/dialog_stoke"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toTopOf="@id/dia_txt_name"
                 app:layout_constraintDimensionRatio="1"
@@ -48,7 +46,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent="0.5"
-                app:srcCompat="@drawable/bg_talent_2" />
+                app:srcCompat="@drawable/icon_user_profile" />
 
             <TextView
                 android:id="@+id/dia_txt_name"
