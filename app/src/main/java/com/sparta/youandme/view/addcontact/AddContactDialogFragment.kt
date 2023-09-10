@@ -58,6 +58,8 @@ class AddContactDialogFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAddContactDialogBinding.bind(view)
         activity = requireActivity() as MainActivity
+        fab = activity.findViewById(R.id.fab_add_todo)
+        tabLayout = activity.findViewById(R.id.tab_layout)
         val context = requireContext()
         val btn = binding.diaBtnWhite
         editelnum = binding.diaEditTelNum
@@ -139,11 +141,6 @@ class AddContactDialogFragment : Fragment() {
                 selectGallery()
             }
         })
-        val manager = activity.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        manager.hideSoftInputFromWindow(
-            activity.currentFocus?.windowToken,
-            InputMethodManager.HIDE_NOT_ALWAYS
-        )
     }
 
     private fun selectGallery() {
@@ -165,9 +162,12 @@ class AddContactDialogFragment : Fragment() {
 
 
     private fun setFragment(frag: Fragment, bundle: Bundle) {
+        val manager = activity.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        manager.hideSoftInputFromWindow(
+            activity.currentFocus?.windowToken,
+            InputMethodManager.HIDE_NOT_ALWAYS
+        )
         viewPager = activity.findViewById(R.id.view_pager)
-        fab = activity.findViewById(R.id.fab_add_todo)
-        tabLayout = activity.findViewById(R.id.tab_layout)
         parentFragmentManager.beginTransaction().remove(this).commit()
         frag.onDestroy()
         frag.onDetach()
@@ -289,6 +289,12 @@ class AddContactDialogFragment : Fragment() {
     override fun onDetach() {
         super.onDetach()
         callback.remove()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        fab.hide()
+        tabLayout.isVisible = false
     }
     companion object {
         fun newInstance() = AddContactDialogFragment()
